@@ -1,0 +1,57 @@
+@import "../../styles/mixin";
+
+.update_nick-page {
+  @include wh(100%, 100%);
+  background: #f7f7f7;
+  overflow: hidden;
+
+  .input-con{
+    margin-top: 32px;
+    background: #ffffff;
+
+    height: 86px;
+    box-sizing: border-box;
+    position: relative;
+    input{
+      height: 86px;
+      background-color: #ffffff;
+      box-sizing: border-box;
+      font-size: 34px;
+      padding-left: 40px;
+      padding-right: 112px;
+
+      border: solid 1px #e5e5e5;
+      border-left: 0;
+      border-right: 0;
+    }
+
+    .clear{
+      width: 32px;
+      height: 32px;
+      position: absolute;
+      right: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: block;
+      border-radius: 50%;
+    }
+
+
+  }
+
+  .note{
+    margin-top: 20px;
+    font-size: 24px;
+    color: #888888;
+    padding-left: 40px;
+    margin-bottom: 42px;
+  }
+
+  button{
+    width: 690px;
+    height: 88px;
+    background-color: #0bad61;
+    border-radius: 10px;
+    color: #ffffff;
+  }
+}

@@ -1,0 +1,20 @@
+@import "../../styles/mixin";
+
+.activity_info-page {
+  padding: 42px 30px;
+
+  .item{
+    font-size: 26px;
+    margin-bottom: 50px;
+    .title{
+
+      color: #2e2e2e;
+      line-height: 40px;
+    }
+    .desc{
+      margin-top: 18px;
+      line-height: 46px;
+      color: #5f5f5f;
+    }
+  }
+}

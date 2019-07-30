@@ -1,0 +1,143 @@
+@import "../../styles/mixin";
+
+.step_statistics-page {
+  @include wh(100%, 100%);
+  background: #f7f7f7;
+
+  .calendar {
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      height: 106px;
+      align-items: center;
+      padding: 0 236px;
+
+      .calendar-header-center {
+        font-size: 30px;
+        color: #0bad61;
+      }
+
+      .calendar-header-left, .calendar-header-right {
+        image {
+          width: 40px;
+          height: 40px;
+          display: block;
+        }
+      }
+    }
+
+    .calendar-body {
+      background: #ffffff;
+
+      .week-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        border: 1px solid #f0f0f0;
+        border-left: 0;
+        border-right: 0;
+
+        .week {
+          width: 14.2%;
+          display: inline-block;
+          text-align: center;
+          font-size: 22px;
+          color: #999999;
+          line-height: 100px;
+        }
+      }
+
+      .day-container {
+
+        .row{
+          display: flex;
+          flex-wrap: nowrap;
+          justify-content: space-around;
+          .day {
+            width: 14.2%;
+            display: inline-block;
+            border-bottom: 1px solid #f0f0f0;
+            height: 126px;
+            position: relative;
+
+            &.today {
+              color: green;
+            }
+
+            .flag {
+              width: 26px;
+              line-height: 26px;
+              background-color: #0bad61;
+              position: absolute;
+              top: 16px;
+              right: 4px;
+              border-radius: 50%;
+              text-align: center;
+              font-size: 18px;
+              color: #ffffff;
+            }
+
+            .data-wrap {
+              width: 100%;
+              height: 100%;
+              display: flex;
+              flex-direction: column;
+              box-sizing: border-box;
+              padding: 16px 0px;
+              justify-content: space-between;
+              align-items: center;
+
+              .date {
+                font-size: 36px;
+                color: #333333;
+              }
+
+              .steps {
+                font-size: 24px;
+                color: #0bad61;
+
+                &.none {
+                  color: #1890ff;
+                }
+              }
+            }
+
+
+          }
+        }
+
+
+      }
+    }
+  }
+
+  .sum-data{
+    height: 348px;
+    background-color: #ffffff;
+    display: flex;
+    margin-top: 16px;
+    justify-content: space-around;
+    align-items: center;
+    .item{
+      .label{
+        font-size: 26px;
+        color: #999999;
+      }
+      .value{
+        margin-top: 30px;
+        display: flex;
+        color: #0bad61;
+        align-items: flex-end;
+        .num{
+          font-family: $dinfont;
+          font-size: 60px;
+
+        }
+        .unit{
+          transform: translateY(-16px);
+          font-size: 30px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,81 @@
+@import "../../styles/mixin";
+
+.personal_data-page {
+  @include wh(100%, 100%);
+  background: #f7f7f7;
+  overflow: hidden;
+
+  .list {
+    margin-top: 17px;
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-left: 0;
+    border-right: 0;
+    padding-left: 30px;
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100px;
+      border-bottom: 1px solid #e5e5e5;
+      padding-right: 30px;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      .list-l {
+        font-size: 34px;
+        color: #333333;
+      }
+
+      .list-c {
+        flex: 1;
+        text-align: right;
+        font-size: 34px;
+        color: #0bad61;
+        &.btn{
+          background: #ffffff;
+          border-radius:0;
+          &::after{
+            border:none;
+          }
+        }
+      }
+       .font-gray{
+        color: #999999;
+      }
+    }
+
+    .uni{
+      height: 160px;
+      .list-l {
+        width: 96px;
+        height: 96px;
+        display: block;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .sub-title{
+    line-height: 90px;
+    padding-left: 30px;
+    font-size: 28px;
+    color: #888888;
+  }
+
+  .exit{
+    font-size: 32px;
+    color: #f1223f;
+    text-align: center;
+    line-height: 100px;
+
+    background-color: #ffffff;
+    border: solid 1px #e5e5e5;
+    border-left: 0;
+    border-right: 0;
+    margin-top: 40px;
+  }
+}

@@ -1,0 +1,117 @@
+@import "../../styles/mixin";
+
+.step_chart-page {
+  @include wh(100%, 100%);
+  background: #f7f7f7;
+  .bar-chart {
+    height: 480px;
+
+  }
+
+  .sum-wrapper {
+    overflow: hidden;
+    border-bottom: 1px solid #f0f0f0;
+    background: #ffffff;
+    .title {
+      padding: 0 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 26px;
+      font-size: 24px;
+      color: #999999;
+    }
+
+    .con{
+      margin: 86px 0 76px 0;
+      text-align: center;
+      .num{
+        font-family: $dinfont;
+        font-size: 78px;
+        color: #333333;
+      }
+      .unit{
+        font-size: 26px;
+        color: #999999;
+      }
+    }
+  }
+
+  .pie-chart{
+    background: #ffffff;
+    overflow: hidden;
+    padding-bottom: 30px;
+    .title {
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      margin-top: 26px;
+      font-size: 24px;
+      color: #999999;
+      margin-bottom: 20px;
+    }
+
+    .content{
+      height: 254px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      .chart{
+        width: 370px;
+        height: 198px;
+        margin-top: 56px;
+        margin-left: 55px;
+      }
+      .line{
+        width: 1px;
+        height: 106px;
+        background-color: #f0f0f0;
+      }
+      .sum{
+        padding-left: 80px;
+        .item{
+          &:first-child{
+            margin-bottom: 36px;
+          }
+          .name{
+            font-size: 26px;
+            color: #999999;
+            margin-bottom: 12px;
+          }
+          .value{
+            .num{
+              font-size: 48px;
+              font-family: $dinfont;
+              color: #333333;
+            }
+            .unit{
+              font-size: 26px;
+              color: #999999;
+            }
+          }
+        }
+      }
+    }
+
+    .footer{
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      margin-top: 30px;
+      .item{
+        display: flex;
+        align-items: center;
+        .dot{
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+        }
+        .desc{
+          font-size: 22px;
+          margin-left: 8px;
+          color: #999999;
+        }
+      }
+    }
+  }
+}

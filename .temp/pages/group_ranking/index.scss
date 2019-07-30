@@ -1,0 +1,96 @@
+@import "../../styles/mixin";
+
+.group_ranking-page {
+  @include wh(100%, 100%);
+  display: flex;
+  flex-direction: column;
+  background: #f7f7f7;
+
+  .tabs {
+    background: #ffffff;
+    height: 88px;
+    display: flex;
+    align-items: center;
+
+    .tab {
+      font-size: 24px;
+      color: #9a9a9a;
+      flex: 1;
+      text-align: center;
+      line-height: 88px;
+      position: relative;
+
+      &--active {
+        color: #0bad5a;
+      }
+
+      .active-bar {
+        content: ' ';
+        width: 40px;
+        height: 4px;
+        border-radius: 2px;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #0bad5a;
+      }
+    }
+  }
+
+  .content {
+    flex: 1;
+    background: #f7f7f7;
+    box-sizing: border-box;
+    padding-top: 16px;
+
+    .item {
+      display: flex;
+      align-items: center;
+      padding: 0 38px 0 32px;
+      justify-content: space-between;
+      background: #ffffff;
+      height: 140px;
+      border-bottom: 1px solid #f6f6f6;
+      .item-l {
+        display: flex;
+        align-items: center;
+        .index {
+          width: 40px;
+          height: 48px;
+          display: block;
+          font-size: 20px;
+          color: #676767;
+          text-align: center;
+          line-height: 48px;
+        }
+
+        .header-img {
+          width: 86px;
+          height: 86px;
+          border-radius: 50%;
+          margin-left: 20px;
+          background: red;
+          margin-right: 18px;
+        }
+        
+        .name{
+          font-size: 26px;
+          color: #2f2f2f;
+        }
+      }
+
+      .steps{
+        font-size: 34px;
+        font-family: $dinfont;
+        transform: translateY(10px);
+        color: #08ad5a;
+      }
+    }
+    .me{
+      .steps{
+        color: #343434;
+      }
+    }
+  }
+}

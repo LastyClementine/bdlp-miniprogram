@@ -1,0 +1,91 @@
+@import "../../styles/mixin";
+
+
+.test-page {
+  @include wh(100%, 100%);
+
+  .calendar {
+    width: 320px;
+    margin-top: 40px;
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 12px;
+    }
+
+    .calendar-body {
+      .week-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-bottom: 10px;
+
+        .week {
+          &:nth-child(6), &:nth-child(7) {
+            color: #e02d2d;
+          }
+
+          width: 14.2%;
+          display: inline-block;
+          text-align: center;
+        }
+      }
+
+      .day-container {
+        height: 140px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+
+        .day {
+          width: 14.2%;
+          display: inline-block;
+          text-align: center;
+
+          &:nth-child(7n-1) {
+            color: #e02d2d;
+          }
+
+          &:nth-child(7n) {
+            color: #e02d2d;
+          }
+
+          &.today {
+            color: green;
+          }
+        }
+
+      }
+    }
+  }
+
+
+  //圆环
+  .wrap {
+    position: relative;
+  }
+
+  .circle-box {
+    text-align: center;
+    margin-top: 10vw;
+  }
+
+  .circle {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+
+  .draw_btn {
+    width: 35vw;
+    position: absolute;
+    top: 100px;
+    right: 0;
+    left: 0;
+    margin: auto;
+    border: 1px #000 solid;
+    border-radius: 5vw;
+  }
+}

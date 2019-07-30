@@ -1,0 +1,59 @@
+@import "../../styles/mixin";
+
+.perfect_info-page {
+  @include wh(100%, 100%);
+  background: #f7f7f7;
+  overflow: hidden;
+  .block{
+    margin-top: 30px;
+    border-top: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+    padding: 0 32px;
+    background: #ffffff;
+    .form-item{
+      border-bottom: 1px solid #e4e4e4;
+      height: 86px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 32px;
+      .label{
+        width: 110px;
+      }
+      .value{
+        flex: 1;
+      }
+      .placeholder{
+        color: #9a9a9a;
+      }
+      &:last-child{
+        border:0;
+      }
+    }
+  }
+  .mark{
+    margin-top: 30px;
+    font-size: 24px;
+    padding-left: 32px;
+    text{
+      color: #1ba61a;
+    }
+  }
+
+  .submit-btn{
+    width: 606px;
+    line-height: 88px;
+    margin: 0 auto;
+    background: #0aae62;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    color: #ffffff;
+    margin-top: 58px;
+    &--disabled{
+      color: #69c994;
+    }
+  }
+}

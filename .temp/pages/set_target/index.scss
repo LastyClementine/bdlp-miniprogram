@@ -1,0 +1,70 @@
+@import "../../styles/mixin";
+
+.set_target-page {
+  @include wh(100%, 100%);
+  background: #f7f7f7;
+  .sub-title{
+    padding-left: 30px;
+    color: #707070;
+    font-size: 26px;
+    line-height: 92px;
+  }
+
+  .radios{
+    background: #ffffff;
+    padding-left: 32px;
+    border: 1px solid #e5e5e5;
+    border-left: 0;
+    border-right: 0;
+    .item{
+      height: 86px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-right: 30px;
+      border-bottom: 1px solid #e6e6e6;
+      &:last-child{
+        border-bottom: 0;
+      }
+      .num{
+        width: 148px;
+        font-family: $dinfont;
+        font-size: 36px;
+        color: #000;
+        font-weight: bolder;
+        transform: translateY(8px);
+      }
+      .desc{
+        flex: 1;
+        text-align: left;
+        font-size: 30px;
+        color: #969696;
+      }
+    }
+  }
+
+  .time{
+    margin-top: 30px;
+    border: 1px solid #e5e5e5;
+    border-left: 0;
+    border-right: 0;
+    height: 86px;
+    display: flex;
+    align-items: center;
+    padding: 0 32px;
+    justify-content: space-between;
+    background: #ffffff;
+    .desc{
+      font-size: 32px;
+    }
+    .time-r{
+      display: flex;
+      align-items: center;
+      .status{
+        font-size: 32px;
+        color: #979797;
+        //margin-right: px;
+      }
+    }
+  }
+}

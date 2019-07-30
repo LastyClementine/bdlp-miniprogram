@@ -1,0 +1,24 @@
+@import "../../styles/mixin";
+
+.select_department-page {
+  @include wh(100%, 100%);
+  background: #f7f7f7;
+  overflow: hidden;
+  .dpt-radio{
+    margin-top: 30px;
+    
+    .at-icon{
+      color: #00b35f !important;
+    }
+
+    .at-radio__option_wrap::after{
+      border: 1px solid #e5e5e5 !important;
+      border-left: none !important;
+    }
+  }
+
+  .at-radio::after{
+    border: 1px solid #e5e5e5 !important;
+    border-left: none !important;
+  }
+}

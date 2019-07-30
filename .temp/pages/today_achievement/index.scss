@@ -1,0 +1,119 @@
+@import "../../styles/mixin";
+
+.today_achievement-page {
+  @include wh(100%, 100%);
+  background:  #253947;
+  overflow: hidden;
+  .wrapper{
+    width: 660px;
+    height: 660px;
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-top: 170px;
+    position: relative;
+    overflow: hidden;
+    .bg-image{
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: absolute;
+      top: 0;
+      background: #0cc2aa;
+    }
+    .content{
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: absolute;
+      top: 0;
+      color: #ffffff;
+      .top{
+        height: 88px;
+        padding-left: 38px;
+        display: flex;
+        align-items: center;
+        margin-top:38px;
+        .header-img{
+          width: 88px;
+          height: 88px;
+          background: grey;
+          border-radius: 50%;
+          margin-right: 16px;
+        }
+
+        .desc{
+          height: 88px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+
+          .name{
+            font-size: 28px;
+          }
+          .date{
+            font-size: 22px;
+          }
+        }
+      }
+      .sum-data{
+        margin-top: 324px;
+        padding-left: 46px;
+        display: flex;
+        .item{
+          width: 146px;
+          .desc{
+            font-size: 24px;
+            margin-bottom: 20px;
+          }
+
+          .value{
+            display: flex;
+            align-items: flex-end;
+            .num{
+              font-family: $dinfont;
+              font-size: 38px;
+              margin-right: 10px;
+            }
+            .unit{
+              font-size: 18px;
+              transform: translateY(-9px);
+            }
+          }
+        }
+      }
+
+      .footer{
+        font-family: $dinfont;
+        padding-left: 48px;
+        display: flex;
+        align-items: center;
+        font-size: 30px;
+        margin-top: 34px;
+        text{
+          font-family: $dinfont;
+          font-weight: bolder;
+          &:first-child{
+            margin-right: 15px;
+          }
+          &:last-child{
+            margin-left: 15px;
+          }
+        }
+      }
+    }
+  }
+
+  .btn{
+    width: 188px;
+    height: 68px;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 110px;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ffffff;
+    border-radius: 34px;
+    color: #ffff;
+    font-size: 28px;
+  }
+}
