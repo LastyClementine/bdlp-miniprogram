@@ -23,9 +23,9 @@ export default class Aaa extends Component {
                 let detail=e.detail
                 let payload={
                     js_code:res.code,
-                    encryptedData:detail.encryptedData,
+                    encrypted_data:detail.encryptedData,
                     iv:detail.iv,
-                    raw_data:detail.raw_data,
+                    raw_data:detail.rawData,
                     signature:detail.signature,
                 }
                 this.props.dispatch({

@@ -56,7 +56,7 @@ export default {
                     }
                 }
 
-                if (status == -2) {
+                if (status == -1) {
                     yield put({
                         type: 'save',
                         payload: {need_authorization: true}

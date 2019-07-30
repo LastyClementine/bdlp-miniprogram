@@ -65,15 +65,15 @@ export default class Home extends Component {
     //注册
     regist = (e) => {
         let detail = e.detail
-        if (detail.errMsg == 'getserInfo:ok') {
+        if (detail.errMsg == 'getUserInfo:ok') {
             Taro.login().then(res => {
                 if (res.code) {
                     let detail = e.detail
                     let payload = {
                         js_code: res.code,
-                        encryptedData: detail.encryptedData,
+                        encrypted_data: detail.encryptedData,
                         iv: detail.iv,
-                        raw_data: detail.raw_data,
+                        raw_data: detail.rawData,
                         signature: detail.signature,
                     }
                     this.props.dispatch({

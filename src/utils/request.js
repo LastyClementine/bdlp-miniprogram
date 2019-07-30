@@ -22,7 +22,8 @@ function get_params(params, is_auth) {
 
 function get_signature(params) {
     let request = {
-        'timestamp': new Date().getTime(),
+        'timestamp': Math.round(new Date().getTime()/1000),
+        // 'timestamp': new Date().getTime(),
         ...params
     }
     request['sign'] = calc_signature(request)
@@ -41,9 +42,9 @@ function calc_signature(parms) {
     tmpArr = tmpArr.sort()
     for (let i = 0; i < tmpArr.length; i++) {
         if (typeof (parms[tmpArr[i]]) === 'object') {
-            tmpStr = tmpStr + tmpArr[i].toLowerCase() + JSON.stringify(parms[tmpArr[i]])
+            tmpStr = tmpStr + tmpArr[i] + JSON.stringify(parms[tmpArr[i]])
         } else {
-            tmpStr = tmpStr + tmpArr[i].toLowerCase() + parms[tmpArr[i]]
+            tmpStr = tmpStr + tmpArr[i] + parms[tmpArr[i]]
         }
 
     }
