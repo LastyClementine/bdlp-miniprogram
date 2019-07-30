@@ -2,10 +2,12 @@ import Taro from '@tarojs/taro'
 import qs from 'qs'
 import {
     baseUrl,
-    signKey
+    signKey,
+    aes
 } from '../config';
 import md5 from 'js-md5'
 // import {hex_sha1} from './security/sha1'
+import {Decrypt} from './security/aes'
 
 
 function get_params(params, is_auth) {
@@ -90,6 +92,7 @@ export default (options = {
                     console.log('登录失效')
                     break;
             }
+            data.data = Decrypt(data.data,aes.key,aes.iv);
             return data
         } else {
             throw new Error(`网络请求错误，状态码${statusCode}`);
