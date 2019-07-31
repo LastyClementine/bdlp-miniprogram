@@ -45,11 +45,12 @@ export default class Step_chart extends Component {
     refBarChart = (node) => this.barChart = node
     //获取数据
     monthlyStat = () => {
-        const {month} = this.props
+        const {month,year} = this.props
         this.props.dispatch({
             type: 'step_chart/monthlyStat',
             payload: {
-                month
+                month,
+                year
             }
         })
     }
@@ -59,7 +60,8 @@ export default class Step_chart extends Component {
         this.props.dispatch({
             type: 'step_chart/save',
             payload: {
-                month: new Date(e.detail.value).getMonth()+1
+                month: new Date(e.detail.value).getMonth()+1,
+                year: new Date(e.detail.value).getFullYear()
             }
         })
         this.monthlyStat()
@@ -68,7 +70,8 @@ export default class Step_chart extends Component {
     render() {
         const {
             month_data,
-            month
+            month,
+            year
         } = this.props
         return (
             <View className='step_chart-page'>

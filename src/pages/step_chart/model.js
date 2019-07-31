@@ -7,7 +7,8 @@ export default {
             month_run_record:[],
             month_step_distribution:{}
         },
-        month:new Date().getMonth()+1
+        month:new Date().getMonth()+1,
+        year:new Date().getFullYear()
     },
 
     effects: {

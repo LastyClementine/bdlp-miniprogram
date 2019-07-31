@@ -16,5 +16,10 @@ export function Decrypt(word, keyStr, ivStr) {
     });
 
     var decryptedStr = decrypt.toString(CryptoJS.enc.Utf8);
-    return JSON.parse(decryptedStr);
+    if(decryptedStr !== '' && decryptedStr != null){
+        return JSON.parse(decryptedStr);
+    }else{
+        return ''
+    }
+
 }
