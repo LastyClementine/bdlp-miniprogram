@@ -10,8 +10,10 @@ export default {
 
     state: {
         systemInfo: systemInfo,
+        is_certified:1,
         isIpx: isIpx,
         need_authorization: false,//是否需要授权
+        need_run_auth:false,
         user_info:{},//个人信息
         shcool_info:{
             department_list:[]
@@ -38,24 +40,26 @@ export default {
         //登录
         * index_index_login({payload}, {call, put}) {
             try {
-                const {status, data} = yield call(aaaApi.index_index_login, payload)
+                const {status, data} = yield call(aaaApi.index_index_login, {js_code:payload.js_code})
                 if (status == 1) {
                     Taro.setStorageSync('token', data.token)
                     Taro.setStorageSync('uid', data.uid)
                     yield put({
-                        type:'home/index'
+                        type:'save',
+                        payload:{
+                            is_certified:data.is_certified
+                        }
                     })
                     if (data.is_certified) {
-                        // yield put({
-                        //     type:'getUserInfo',
-                        //     payload:{}
-                        // })
                         Taro.navigateTo({
                             url: '/pages/index/index'
                         })
+                    }else {
+                        payload.cb()
                     }
                 }
 
+                //需要授权注册
                 if (status == -1) {
                     yield put({
                         type: 'save',

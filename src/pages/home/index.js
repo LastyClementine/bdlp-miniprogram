@@ -23,29 +23,54 @@ export default class Home extends Component {
     componentDidMount = () => {
         this.circleInit()
         this.drawCircle()
-        this.login()
+
         // this.index()
     }
 
     componentDidShow() {
-
+        this.login()
     }
 
     //下拉刷新
     onPullDownRefresh() {
-        if (Taro.getStorageSync('token')){
+        if (Taro.getStorageSync('token')) {
             this.index()
         }
     }
 
     //获取首页数据
     index = () => {
-        this.props.dispatch({
-            type: 'home/index',
-            payload: {
-                cb: this.drawCircle
-            }
-        })
+        Taro.getWeRunData()
+            .then(res => {
+                if (res.errMsg == 'getWeRunData:ok') {
+                    this.props.dispatch({
+                        type: 'home/index',
+                        payload: {
+                            encrypted_data: res.encryptedData,
+                            iv: res.iv,
+                            cb: this.drawCircle
+                        }
+                    })
+                } else {
+                    console.log('获取微信运动授权失败')
+                    this.props.dispatch({
+                        type: 'common/save',
+                        payload: {
+                            need_run_auth:true
+                        }
+                    })
+                }
+
+            })
+            .catch(err => {
+                this.props.dispatch({
+                    type: 'common/save',
+                    payload: {
+                        need_run_auth:true
+                    }
+                })
+            })
+
     }
 
     //登录
@@ -55,7 +80,8 @@ export default class Home extends Component {
                 this.props.dispatch({
                     type: 'common/index_index_login',
                     payload: {
-                        js_code: res.code
+                        js_code: res.code,
+                        cb: this.index
                     }
                 })
             }
@@ -82,8 +108,8 @@ export default class Home extends Component {
                     })
                     this.props.dispatch({
                         type: 'common/save',
-                        payload:{
-                            need_authorization:false
+                        payload: {
+                            need_authorization: false
                         }
                     })
                 }
@@ -91,6 +117,21 @@ export default class Home extends Component {
         } else {//授权失败
             console.log('授权被拒绝')
         }
+
+    }
+
+    //强制授权
+    openSetting=(e)=>{
+        let is_agree=e.detail.authSetting['scope.werun']
+        if(is_agree){
+            this.index()
+        }
+        this.props.dispatch({
+            type: 'common/save',
+            payload: {
+                need_run_auth: !e.detail.authSetting['scope.werun']
+            }
+        })
 
     }
 
@@ -115,14 +156,14 @@ export default class Home extends Component {
         })
     }
 
-    goActivityDetail = (id,event_type) => {
+    goActivityDetail = (id, event_type) => {
         Taro.navigateTo({
-            url: '/pages/activity_detail/index?id='+id+'&event_type='+event_type
+            url: '/pages/activity_detail/index?id=' + id + '&event_type=' + event_type
         })
     }
 
     //跳转步数统计
-    goStepChart=()=>{
+    goStepChart = () => {
         Taro.navigateTo({
             url: '/pages/step_chart/index'
         })
@@ -166,6 +207,8 @@ export default class Home extends Component {
             index_data,
             sync_success,
             loading,
+            need_run_auth,
+            is_certified,
             need_authorization
         } = this.props
         const {least_event} = index_data
@@ -206,7 +249,7 @@ export default class Home extends Component {
                                 <View className="data">
                                     <View className="desc">当前步数</View>
                                     <View
-                                        className="num">{loading['effects']['home/index'] ? '同步中...' : index_data.user_now_step_num}</View>
+                                        className="num">{loading['effects']['home/index'] ? 0 : (index_data.user_now_step_num||0)}</View>
                                     <View className="target">今日目标：{index_data.user_target_step_num || 6000}</View>
                                 </View>
                             </View>
@@ -273,7 +316,8 @@ export default class Home extends Component {
                             </View>
                             <AtProgress percent={percent} isHidePercent strokeWidth={5} color='#2f404d'/>
 
-                            <View className="detail-wrapper" onClick={this.goActivityDetail.bind(this,least_event.event_id,least_event.event_type)}>
+                            <View className="detail-wrapper"
+                                  onClick={this.goActivityDetail.bind(this, least_event.event_id, least_event.event_type)}>
                                 <View className="detail">
                                     查看详情
                                 </View>
@@ -291,6 +335,20 @@ export default class Home extends Component {
                         <Button
                             openType="getUserInfo"
                             onGetUserInfo={this.regist.bind(this)}
+                        >
+                            <Text style='color:#09bb07;'>确定</Text>
+                        </Button>
+                    </AtModalAction>
+                </AtModal>
+                <AtModal isOpened={need_run_auth} closeOnClickOverlay={false}>
+                    <AtModalHeader>提示</AtModalHeader>
+                    <AtModalContent>
+                        为了更好使用，请授权微信运动
+                    </AtModalContent>
+                    <AtModalAction>
+                        <Button
+                            openType="openSetting"
+                            onOpenSetting={this.openSetting}
                         >
                             <Text style='color:#09bb07;'>确定</Text>
                         </Button>

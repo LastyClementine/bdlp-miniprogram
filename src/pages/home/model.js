@@ -14,7 +14,7 @@ export default {
   effects: {
     * index({payload}, {call, put}) {
       try {
-        const {status, data} = yield call(homeApi.index, {})
+        const {status, data} = yield call(homeApi.index, {encrypted_data:payload.encrypted_data,iv:payload.iv})
         if (status == 1) {
           yield put({
             type:'save',

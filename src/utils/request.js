@@ -52,9 +52,8 @@ function calc_signature(parms) {
     }
 
     tmpStr = tmpStr + signKey
-
-
-    return md5(tmpStr)
+    tmpStr=md5(tmpStr)
+    return tmpStr
 }
 
 export default (options = {
@@ -77,6 +76,7 @@ export default (options = {
             switch (data.status) {
                 case 1:
                     // console.log('成功')
+                    data.data = Decrypt(data.data,aes.key,aes.iv);
                     break;
                 case 0:
                     console.log('普通异常')
@@ -92,7 +92,6 @@ export default (options = {
                     console.log('登录失效')
                     break;
             }
-            data.data = Decrypt(data.data,aes.key,aes.iv);
             return data
         } else {
             throw new Error(`网络请求错误，状态码${statusCode}`);
