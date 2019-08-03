@@ -3,7 +3,7 @@ import * as step_chartApi from './service'
 export default {
     namespace: 'step_chart',
     state: {
-        month_data:{
+        month_data_chart:{
             month_run_record:[],
             month_step_distribution:{}
         },

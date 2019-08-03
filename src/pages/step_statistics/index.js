@@ -1,7 +1,8 @@
 import Taro, {Component} from '@tarojs/taro'
-import {Button, View, Image} from '@tarojs/components'
+import {Text, View, Image} from '@tarojs/components'
 import {connect} from '@tarojs/redux'
 import './index.scss'
+import moment from 'moment'
 
 @connect(({step_statistics, common, loading}) => ({
     ...step_statistics,
@@ -37,11 +38,12 @@ export default class Step_statistics extends Component {
 
     //达标记录数据
     achieveRecord = () => {
-        const {month} = this.props
+        const {curMonth, curYear} = this.state
         this.props.dispatch({
             type: 'step_statistics/achieveRecord',
             payload: {
-                month,
+                month: curMonth + 1,
+                year: curYear,
                 event_id: this.$router.params.id
             }
 
@@ -56,7 +58,6 @@ export default class Step_statistics extends Component {
 
     initCalendar = (curYear, curMonth) => {
         let daysInMonth = [31, this.isLeapYear(curYear) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-        console.log('daysInMonth', daysInMonth)
         let firstDayInMonth = new Date(curYear, curMonth, 1),
             firstDayWeek = firstDayInMonth.getDay();
         let calendarRows = Math.ceil((firstDayWeek + daysInMonth[curMonth]) / 7);
@@ -75,7 +76,6 @@ export default class Step_statistics extends Component {
                 }
             }
         }
-        console.log('rows', rows)
         this.setState({
             dayList: rows
         })
@@ -92,6 +92,7 @@ export default class Step_statistics extends Component {
             curMonth, curYear
         }, () => {
             this.initCalendar(curYear, curMonth)
+            this.achieveRecord()
         })
 
     }
@@ -107,11 +108,14 @@ export default class Step_statistics extends Component {
             curMonth, curYear
         }, () => {
             this.initCalendar(curYear, curMonth)
+            this.achieveRecord()
         })
     }
 
     render() {
-        const {month_run_record} = this.props
+        const {month_data} = this.props
+        let {month_run_record} = month_data
+        console.log('month_data', month_data)
         const {curMonth, curYear, dayList} = this.state
         return (
             <View className='step_statistics-page'>
@@ -143,11 +147,27 @@ export default class Step_statistics extends Component {
                                     {item.map((it, idx) => {
                                         return (
                                             <View key={idx} className='day'>
-                                                {it && <View className="flag">起</View>}
+                                                {(it && month_run_record[it * 1 - 1]) && (moment(month_run_record[it * 1 - 1].date * 1000).format('YYYY-MM-DD') == moment(month_data.event_start_time * 1000).format('YYYY-MM-DD')) && (
+                                                    <View className="flag start">
+                                                        始
+                                                    </View>
+                                                )}
+                                                {(it && month_run_record[it * 1 - 1]) && (moment(month_run_record[it * 1 - 1].date * 1000).format('YYYY-MM-DD') == moment(month_data.event_end_time * 1000).format('YYYY-MM-DD')) && (
+                                                    <View className="flag start">
+                                                        终
+                                                    </View>
+                                                )}
                                                 {it && (
                                                     <View className="data-wrap">
                                                         <View className="date">{it}</View>
-                                                        <View className="steps">8420</View>
+                                                        <View className="steps">
+                                                            {month_run_record[it * 1 - 1].is_active ? (
+                                                                <Text>{month_run_record[it * 1 - 1].step_num}</Text>
+                                                            ) : (
+                                                                <Text style='color:#1890ff;'>未参与</Text>
+                                                            )}
+
+                                                        </View>
                                                     </View>
                                                 )}
                                             </View>
@@ -163,14 +183,14 @@ export default class Step_statistics extends Component {
                     <View className="item">
                         <View className="label">活动目标 : </View>
                         <View className="value">
-                            <View className="num">29</View>
+                            <View className="num">{month_data.target_num}</View>
                             <View className="unit">次</View>
                         </View>
                     </View>
                     <View className="item">
                         <View className="label">我已达标 : </View>
                         <View className="value">
-                            <View className="num">29</View>
+                            <View className="num">{month_data.user_achieve_num}</View>
                             <View className="unit">次</View>
                         </View>
                     </View>

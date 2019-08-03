@@ -20,9 +20,21 @@ export default class Home extends Component {
         backgroundColor: '#0bad61'
     }
 
+    state={
+        unit:''
+    }
+
     componentDidMount = () => {
-        this.circleInit()
-        this.drawCircle()
+        Taro.getSystemInfo()
+            .then(res=>{
+                this.setState({
+                    unit:res.windowWidth/375
+                },()=>{
+                    this.circleInit()
+                    this.drawCircle()
+                })
+            })
+
 
         // this.index()
     }
@@ -171,25 +183,27 @@ export default class Home extends Component {
 
     //画圆圈
     circleInit = () => {
+        const unit=this.state.unit
         var cxt_arc = Taro.createCanvasContext('canvasCircle');
-        cxt_arc.setLineWidth(6);
+        cxt_arc.setLineWidth(6*unit);
         cxt_arc.setStrokeStyle('#f0f0f0');
         cxt_arc.setLineCap('round');
         cxt_arc.beginPath();
-        cxt_arc.arc(100, 100, 96, 0, 2 * Math.PI, false);
+        cxt_arc.arc(100*unit, 100*unit, 96*unit, 0, 2 * Math.PI, false);
         cxt_arc.stroke();
         cxt_arc.draw();
     }
 
     drawCircle = (curr, total) => {
+        const unit=this.state.unit
         var ctx = Taro.createCanvasContext('canvasArcCir');
 
         function drawArc(s, e) {
             ctx.setFillStyle('white');
-            ctx.clearRect(0, 0, 200, 200);
+            ctx.clearRect(0, 0, 200*unit, 200*unit);
             ctx.draw();
-            var x = 100, y = 100, radius = 96;
-            ctx.setLineWidth(5);
+            var x = 100*unit, y = 100*unit, radius = 96*unit;
+            ctx.setLineWidth(5*unit);
             ctx.setStrokeStyle('#0bad61');
             ctx.setLineCap('round');
             ctx.beginPath();
@@ -216,6 +230,7 @@ export default class Home extends Component {
         if (JSON.stringify(least_event) !== '{}') {
             percent = (least_event.user_num / least_event.target_num) * 100
         }
+        console.log('index_data',index_data)
         return (
             <View className='home-page'>
                 <View className="wrapper">

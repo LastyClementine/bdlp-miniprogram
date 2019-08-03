@@ -69,10 +69,11 @@ export default class Step_chart extends Component {
 
     render() {
         const {
-            month_data,
+            month_data_chart,
             month,
             year
         } = this.props
+        console.log('month_data_chart',month_data_chart)
         return (
             <View className='step_chart-page'>
                 <View className="bar-chart">
@@ -94,7 +95,7 @@ export default class Step_chart extends Component {
 
                     </View>
                     <View className="con">
-                        <Text className='num'>{month_data.month_sum_step}</Text>
+                        <Text className='num'>{month_data_chart.month_sum_step}</Text>
                         <Text className="unit">步</Text>
                     </View>
                 </View>
@@ -110,14 +111,14 @@ export default class Step_chart extends Component {
                             <View className="item">
                                 <View className="name">本月累计</View>
                                 <View className="value">
-                                    <Text className="num">{month_data.month_sum_step}</Text>
+                                    <Text className="num">{month_data_chart.month_sum_step}</Text>
                                     <Text className="unit">步</Text>
                                 </View>
                             </View>
                             <View className="item">
                                 <View className="name">本月最高</View>
                                 <View className="value">
-                                    <Text className="num">{month_data.month_max}</Text>
+                                    <Text className="num">{month_data_chart.month_max}</Text>
                                     <Text className="unit">步</Text>
                                 </View>
                             </View>

@@ -88,7 +88,7 @@ export default class Activity_detail extends Component {
     }
 
     formatDate=(date)=>{
-        date=date*1
+        date=date*1000
         let year=new Date(date).getFullYear()
         let month=new Date(date).getMonth()+1
         let day=new Date(date).getDate()
@@ -105,6 +105,7 @@ export default class Activity_detail extends Component {
         } = this.props
         const {user_rank, rank,achieve_num} = rank_data
         const {event_type} = this.$router.params
+        console.log('detail_data.start_time',detail_data.start_time)
         let start_time=this.formatDate(detail_data.start_time)
         let end_time=this.formatDate(detail_data.end_time)
         return (
