@@ -5,6 +5,7 @@
   box-sizing: border-box;
   background: #0aae62;
   padding-bottom: 50px;
+
   .info {
     width: 702px;
     background: #ffffff;
@@ -76,6 +77,7 @@
     border-radius: 8px;
     box-sizing: border-box;
     overflow: hidden;
+
     .title {
       padding-left: 40px;
       font-size: 32px;
@@ -181,6 +183,7 @@
       box-sizing: border-box;
       padding-top: 16px;
       padding-bottom: 16px;
+
       .item {
         display: flex;
         align-items: center;
@@ -224,6 +227,18 @@
           font-family: $dinfont;
           transform: translateY(10px);
           color: #08ad5a;
+        }
+
+        .rate {
+          .percent {
+            color: #333333;
+            font-size: 48px;
+            font-family: $dinfont;
+          }
+          .times{
+            font-size: 26px;
+            color: #999999;
+          }
         }
       }
 

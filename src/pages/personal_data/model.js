@@ -44,9 +44,10 @@ export default {
     * exitSchoolTest({payload}, {call, put}) {
       try {
         const {status, data} = yield call(personal_dataApi.exitSchoolTest, payload)
+        console.log('status',status)
         if (status == 1) {
-          Taro.navigateTo({
-            url: '/pages/index/index'
+          Taro.switchTab({
+            url: '/pages/home/index'
           })
         }
       } catch (e) {

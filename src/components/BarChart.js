@@ -1,6 +1,6 @@
 import Taro, { Component } from "@tarojs/taro";
 import * as echarts from "./ec-canvas/echarts";
-
+console.log('echarts',echarts)
 function setChartData(chart, data) {
   var dataAxis = ['一', '二', '三', '四', '五'];
   data = [220, 182, 191, 234, 290];

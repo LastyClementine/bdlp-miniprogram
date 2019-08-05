@@ -48,7 +48,7 @@ export default class Today_achievement extends Component {
         const {
             achievement_data
         } = this.props
-
+        console.log('achievement_data',achievement_data)
         return (
             <View className='today_achievement-page'>
                 <View className="wrapper">

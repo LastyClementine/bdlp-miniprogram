@@ -48,7 +48,7 @@ export default {
                             })
                     }
                     if (payload.cb) {
-                        payload.cb(data.user_now_step_num, data.user_target_step_num || 6000)
+                        payload.cb(data.user_now_step_num, data.user_target_step_num[1]*1 || 6000)
                     }
                 } else {
                     yield put({

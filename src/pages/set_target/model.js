@@ -21,6 +21,17 @@ export default {
                             target_type:data.target_type
                         }
                     })
+
+                    console.log('data',data)
+                    if (data.is_remind){
+                        yield put({
+                            type:'set_remind/save',
+                            payload:{
+                                is_remind:data.is_remind,
+                                remind_time:data.remind_hour+':'+data.remind_minute
+                            }
+                        })
+                    }
                 }
             } catch (e) {
                 console.log(e)

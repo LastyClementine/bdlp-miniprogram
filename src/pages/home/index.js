@@ -265,7 +265,7 @@ export default class Home extends Component {
                                     <View className="desc">当前步数</View>
                                     <View
                                         className="num">{loading['effects']['home/index'] ? 0 : (index_data.user_now_step_num||0)}</View>
-                                    <View className="target">今日目标：{index_data.user_target_step_num || 6000}</View>
+                                    <View className="target">今日目标：{(index_data.user_target_step_num&&index_data.user_target_step_num[1]) || 6000}</View>
                                 </View>
                             </View>
                             <View className="cell">

@@ -1,4 +1,4 @@
-import '@tarojs/async-await'
+ import '@tarojs/async-await'
 import {Provider} from '@tarojs/redux'
 import Taro, {Component} from '@tarojs/taro'
 import Index from './pages/index'

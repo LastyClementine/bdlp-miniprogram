@@ -61,6 +61,8 @@ export default class Set_remind extends Component {
             target_info,
             remind_time,
         } = this.props
+        console.log('target_info',target_info)
+        console.log('remind_time',remind_time)
         return (
             <View className='set_remind-page'>
                 <View className="sub-title">
@@ -85,7 +87,7 @@ export default class Set_remind extends Component {
                             <View
                                 className="list-c font-gray"
                             >
-                                {target_info.is_remind ? (remind_time ? ('每天' + remind_time) : ('每天' + target_info.remind_hour + ':' + target_info.remind_minute)) : '未开启'}
+                                {remind_time ? ('每天' + remind_time) : '未开启' }
                             </View>
                             <AtIcon value='chevron-right' size='16' color='#b3b3b3' className='chevron-right'></AtIcon>
                         </View>

@@ -20,10 +20,30 @@ export default class Activity_detail extends Component {
 
     componentDidMount = () => {
         this.getDetailData(this.$router.params.id)
-        const event_type=this.$router.params.event_type
-        if (event_type == 2||event_type==3) {
+        const event_type = this.$router.params.event_type
+        if (event_type == 2 ) {
             this.getEventRank()
         }
+        if(event_type == 3){
+            this.props.dispatch({
+                type:'activity_detail/save',
+                payload:{
+                    rank_type:3
+                }
+            })
+            this.getEventRank()
+        }
+
+    }
+
+    componentWillUnmount() {
+        this.props.dispatch({
+            type:'activity_detail/save',
+            payload:{
+                scope_type:'0',//数据类型
+                rank_type:1,//排名类型
+            }
+        })
     }
 
     getDetailData = (id) => {
@@ -74,25 +94,24 @@ export default class Activity_detail extends Component {
             type: 'activity_detail/getEventRank',
             payload: {
                 event_id: this.$router.params.id,
-                school_id: 1,
                 scope_type: all_scope_type[scope_type].value,
                 rank_type: rank_type
             }
         })
     }
 
-    goStepStatistics=()=>{
+    goStepStatistics = () => {
         Taro.navigateTo({
-            url: '/pages/step_statistics/index?id='+this.$router.params.id
+            url: '/pages/step_statistics/index?id=' + this.$router.params.id
         })
     }
 
-    formatDate=(date)=>{
-        date=date*1000
-        let year=new Date(date).getFullYear()
-        let month=new Date(date).getMonth()+1
-        let day=new Date(date).getDate()
-        return year+'.'+month+'.'+day
+    formatDate = (date) => {
+        date = date * 1000
+        let year = new Date(date).getFullYear()
+        let month = new Date(date).getMonth() + 1
+        let day = new Date(date).getDate()
+        return year + '.' + month + '.' + day
     }
 
     render() {
@@ -103,11 +122,16 @@ export default class Activity_detail extends Component {
             rank_data,
             all_scope_type
         } = this.props
-        const {user_rank, rank,achieve_num} = rank_data
+        const {user_rank, today_rank, achieve_num} = rank_data
+        let rank = today_rank||[]
+        console.log('rank_data',rank_data,detail_data)
         const {event_type} = this.$router.params
-        console.log('detail_data.start_time',detail_data.start_time)
-        let start_time=this.formatDate(detail_data.start_time)
-        let end_time=this.formatDate(detail_data.end_time)
+        //活动类型为 达标率排名 并且是进行中的状态
+        if (rank_type == '3' && event_type == 2) {
+            rank = rank_data.rank||[]
+        }
+        let start_time = this.formatDate(detail_data.start_time)
+        let end_time = this.formatDate(detail_data.end_time)
         return (
             <View className='activity_detail-page'>
                 <View className="info">
@@ -165,14 +189,14 @@ export default class Activity_detail extends Component {
                                 <View className="sum-it">
                                     <View className="label">今日达标：</View>
                                     <View className="value">
-                                        <Text>335</Text>
+                                        <Text>{rank_data.today_achieve_num}</Text>
                                         人
                                     </View>
                                 </View>
                                 <View className="sum-it">
                                     <View className="label">昨日达标 ：</View>
                                     <View className="value">
-                                        <Text>335</Text>
+                                        <Text>{rank_data.yesterday_achieve_num}</Text>
                                         人
                                     </View>
                                 </View>
@@ -203,7 +227,7 @@ export default class Activity_detail extends Component {
                                 </View>
                             </View>
                             <View className="content">
-                                <View className="item me" >
+                                <View className="item me">
                                     <View className="item-l">
                                         {user_rank.rank == 1 && (
                                             <Image className="index"
@@ -226,7 +250,15 @@ export default class Activity_detail extends Component {
                                         />
                                         <View className="name">{user_rank.name}</View>
                                     </View>
-                                    <View className="steps">{user_rank.achieve_num}</View>
+                                    {rank_type==3?(
+                                        <View className="rate">
+                                            <View className="percent">{user_rank.percent}%</View>
+                                            <View className="times">{user_rank.achieve_num}次</View>
+                                        </View>
+                                    ):(
+                                        <View className="steps">{user_rank.step_num}</View>
+                                    )}
+
                                 </View>
                                 {rank.map((item, index) => (
                                     <View className="item" key={index}>
@@ -252,7 +284,15 @@ export default class Activity_detail extends Component {
                                             />
                                             <View className="name">{item.name}</View>
                                         </View>
-                                        <View className="steps">{item.achieve_num}</View>
+                                        {rank_type==3?(
+                                            <View className="rate">
+                                                <View className="percent">{item.percent}%</View>
+                                                <View className="times">{item.achieve_num}次</View>
+                                            </View>
+                                        ):(
+                                            <View className="steps">{item.step_num}</View>
+                                        )}
+
                                     </View>
                                 ))}
                             </View>
@@ -260,6 +300,7 @@ export default class Activity_detail extends Component {
                     )}
 
 
+                    {/*已结束*/}
                     {event_type == 3 && (
                         <View>
                             <Picker
@@ -278,7 +319,7 @@ export default class Activity_detail extends Component {
                             </Picker>
                             <View className="sum-data">
                                 <View className="sum-it only">
-                                    <View className="label">今日达标：</View>
+                                    <View className="label">达标人数：</View>
                                     <View className="value">
                                         <Text>{achieve_num}</Text>
                                         人
@@ -286,7 +327,7 @@ export default class Activity_detail extends Component {
                                 </View>
                             </View>
                             <View className="content">
-                                <View className="item me" >
+                                <View className="item me">
                                     <View className="item-l">
                                         {user_rank.rank == 1 && (
                                             <Image className="index"

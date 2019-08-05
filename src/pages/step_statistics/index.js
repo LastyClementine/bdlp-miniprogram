@@ -116,6 +116,7 @@ export default class Step_statistics extends Component {
         const {month_data} = this.props
         let {month_run_record} = month_data
         console.log('month_data', month_data)
+        const target_step_num=month_data.target_step_num||0
         const {curMonth, curYear, dayList} = this.state
         return (
             <View className='step_statistics-page'>
@@ -162,7 +163,11 @@ export default class Step_statistics extends Component {
                                                         <View className="date">{it}</View>
                                                         <View className="steps">
                                                             {month_run_record[it * 1 - 1].is_active ? (
-                                                                <Text>{month_run_record[it * 1 - 1].step_num}</Text>
+                                                                <Text>{(month_run_record[it * 1 - 1].step_num)>target_step_num?(
+                                                                    <Text>{month_run_record[it * 1 - 1].step_num}</Text>
+                                                                ):(
+                                                                    <Text style='color:#999;'>{month_run_record[it * 1 - 1].step_num}</Text>
+                                                                )}</Text>
                                                             ) : (
                                                                 <Text style='color:#1890ff;'>未参与</Text>
                                                             )}

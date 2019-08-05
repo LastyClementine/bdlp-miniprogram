@@ -33,6 +33,7 @@ export default class My_activity extends Component {
     render() {
         const {activity_data} = this.props
         const {now_event, history_event} = activity_data
+        console.log('activity_data',activity_data)
         return (
             <View className='my_activity-page'>
                 <View className="wrap">

@@ -26,23 +26,24 @@ export default class Step_chart extends Component {
             }]
         }
 
-        console.log('fadfadfdsfasd',this.barChart)
-        this.barChart.refresh(barChartData);
         const pieChartData = [
             {value: 9, name: '9天'},
             {value: 14, name: '14天'},
             {value: 20, name: '20天'},
             {value: 12, name: '12天'},
         ];
+
+        //初始化表格
+        this.barChart.refresh(pieChartData);
         this.pieChart.refresh(pieChartData);
 
-
-
+        //获取月统计数据
         this.monthlyStat()
     }
 
     refPieChart = (node) => this.pieChart = node
     refBarChart = (node) => this.barChart = node
+
     //获取数据
     monthlyStat = () => {
         const {month,year} = this.props
@@ -54,7 +55,6 @@ export default class Step_chart extends Component {
             }
         })
     }
-
 
     onMonthChange = e => {
         this.props.dispatch({
