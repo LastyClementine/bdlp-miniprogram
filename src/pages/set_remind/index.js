@@ -71,7 +71,7 @@ export default class Set_remind extends Component {
                 <View className="list" style="margin-top:0;">
                     <View className="item">
                         <View className="list-l">开启推送提醒</View>
-                        <Switch checked={target_info.is_remind} onChange={this.onSwitchChange}/>
+                        <Switch checked={target_info.is_remind||true} onChange={this.onSwitchChange}/>
                     </View>
                 </View>
 

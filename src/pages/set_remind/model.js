@@ -4,7 +4,7 @@ export default {
     namespace: 'set_remind',
     state: {
         is_remind: '',
-        remind_time: ''
+        remind_time: '20:00'
     },
 
     effects: {

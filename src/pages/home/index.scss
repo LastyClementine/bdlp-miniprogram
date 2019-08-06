@@ -3,7 +3,7 @@
 .home-page {
   //@include wh(100%, 100%);
 
-  background: #0bad61;
+  //background: #0bad61;
   .wrapper {
     .page-top-bg {
       background: #0bad61;
@@ -11,7 +11,7 @@
       .page-top {
         background: #ffffff;
         overflow: hidden;
-        border-radius: 48px 48px 0px 0px;
+        //border-radius: 48px 48px 0px 0px;
 
         .title {
           font-size: 24px;
@@ -73,6 +73,16 @@
               color: #0bad61;
               font-size: 72px;
               margin-bottom: 16px;
+              button{
+                padding: 0;
+                margin: 0;
+                background: #ffffff;
+                border: 0;
+                color: #0bad61;
+                &::after{
+                  border: 0;
+                }
+              }
             }
 
             .target {
@@ -228,13 +238,14 @@
       }
 
       .null {
+        padding-bottom: 40px;
+        padding-top: 56px;
         .null-image {
           width: 172px;
           height: 114px;
           display: block;
           margin: 0 auto;
           margin-bottom: 20px;
-          margin-top: 56px;
         }
 
         .null-desc {
@@ -259,6 +270,7 @@
         align-items: center;
         border-radius: 8px;
         margin-bottom: 60px;
+        background: #ffffff;
       }
     }
 
