@@ -38,12 +38,15 @@ export default class Home extends Component {
                 })
             })
 
-
+        this.login()
         // this.index()
     }
 
     componentDidShow() {
-        this.login()
+        // console.log(this.props.is_certified)
+        if (Taro.getStorageSync('token')&&this.props.is_certified!=1){
+            this.index()
+        }
     }
 
     //下拉刷新
@@ -121,6 +124,7 @@ export default class Home extends Component {
                         iv: detail.iv,
                         raw_data: detail.rawData,
                         signature: detail.signature,
+                        cb:this.login
                     }
                     this.props.dispatch({
                         type: 'common/index_index_register',
@@ -171,7 +175,11 @@ export default class Home extends Component {
 
     //设置目标值
     goSetTarget = () => {
-        if (this.props.need_run_auth) {
+        if (this.props.is_certified==1){
+            Taro.showToast({
+                title:'请先授权认证',
+                icon:"none"
+            })
             return
         }
         Taro.navigateTo({
@@ -181,6 +189,13 @@ export default class Home extends Component {
 
     //跳转设置提醒时间
     goSetTime = () => {
+        if (this.props.is_certified==1){
+            Taro.showToast({
+                title:'请先授权认证',
+                icon:"none"
+            })
+            return
+        }
         Taro.navigateTo({
             url: '/pages/set_remind/index'
         })
@@ -188,12 +203,26 @@ export default class Home extends Component {
 
     //跳转今日成就
     getTodayAchievement = () => {
+        if (this.props.is_certified==1){
+            Taro.showToast({
+                title:'请先授权认证',
+                icon:"none"
+            })
+            return
+        }
         Taro.navigateTo({
             url: '/pages/today_achievement/index'
         })
     }
 
     goActivityDetail = (id, event_type) => {
+        if (this.props.is_certified==1){
+            Taro.showToast({
+                title:'请先授权认证',
+                icon:"none"
+            })
+            return
+        }
         Taro.navigateTo({
             url: '/pages/activity_detail/index?id=' + id + '&event_type=' + event_type
         })
@@ -201,6 +230,13 @@ export default class Home extends Component {
 
     //跳转步数统计
     goStepChart = () => {
+        if (this.props.is_certified==1){
+            Taro.showToast({
+                title:'请先授权认证',
+                icon:"none"
+            })
+            return
+        }
         Taro.navigateTo({
             url: '/pages/step_chart/index'
         })
@@ -258,7 +294,7 @@ export default class Home extends Component {
         if (JSON.stringify(least_event) !== '{}') {
             percent = (least_event.user_num / least_event.target_num) * 100
         }
-        console.log('index_data', index_data)
+        console.log('index_data', is_certified)
         return (
             <View className='home-page'>
                 <View className="wrapper">
@@ -351,7 +387,7 @@ export default class Home extends Component {
                         当前活动
                     </View>
 
-                    {need_authorization ? (
+                    {(need_authorization||is_certified==1) ? (
                         <View className="activity-con">
                             <View className="null">
                                 <View className="null-desc">认证学校后可参与校园活动</View>
@@ -361,7 +397,7 @@ export default class Home extends Component {
                                 openType="getUserInfo"
                                 onGetUserInfo={this.regist.bind(this)}
                             >
-                                立即认证
+                                授权认证
                             </Button>
                         </View>
                     ):(

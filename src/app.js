@@ -25,7 +25,7 @@ class App extends Component {
             // 'pages/test/index',
 
             'pages/set_target/index',
-            'pages/group_ranking/index',
+            // 'pages/group_ranking/index',
             'pages/today_achievement/index',
             'pages/activity_detail/index',
             'pages/activity_info/index',

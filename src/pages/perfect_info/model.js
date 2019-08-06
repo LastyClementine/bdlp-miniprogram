@@ -16,9 +16,16 @@ export default {
             try {
                 const {status, data} = yield call(perfect_infoApi.checkUserSchoolInfo, payload)
                 if (status == 1) {
+                    yield put({
+                        type:"common/save",
+                        payload:{
+                            is_certified:0
+                        }
+                    })
                     Taro.showToast({
                         title:'认证成功'
                     })
+
                     setTimeout(()=>{
                         Taro.switchTab({
                             url: '/pages/home/index'

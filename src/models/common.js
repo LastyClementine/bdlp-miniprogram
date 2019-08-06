@@ -27,12 +27,25 @@ export default {
     effects: {
         //注册
         * index_index_register({payload}, {call, put}) {
+            Taro.showLoading({
+                mask:true
+            })
             try {
-                const {status, data} = yield call(aaaApi.index_index_register, payload)
+                let params = {
+                    js_code: payload.js_code,
+                    encrypted_data: payload.encrypted_data,
+                    iv: payload.iv,
+                    raw_data: payload.raw_data,
+                    signature: payload.signature,
+                }
+                const {status, data} = yield call(aaaApi.index_index_register, params)
+                Taro.hideLoading()
                 if (status == 1) {
                     console.log('注册成功')
+                    payload.cb()
                 }
             } catch (e) {
+                Taro.hideLoading()
                 console.log(e)
             }
         },
@@ -113,6 +126,7 @@ export default {
 
     reducers: {
         save(state, {payload}) {
+            console.log('common save',payload)
             return {...state, ...payload}
         }
     }

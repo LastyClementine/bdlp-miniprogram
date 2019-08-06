@@ -46,6 +46,29 @@ export default {
         const {status, data} = yield call(personal_dataApi.exitSchoolTest, payload)
         console.log('status',status)
         if (status == 1) {
+          Taro.removeStorageSync('token')
+          yield put({
+            type:'common/save',
+            payload:{
+              is_certified:0
+            }
+          })
+          yield put({
+            type:'mine/save',
+            payload:{
+              mine_data: {
+              },
+            }
+          })
+          yield put({
+            type:'common/save',
+            payload:{
+              is_certified:1,
+              need_authorization: false,//是否需要授权
+              need_run_auth:false,
+              user_info:{},//个人信息
+            }
+          })
           Taro.switchTab({
             url: '/pages/home/index'
           })

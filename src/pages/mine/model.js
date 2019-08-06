@@ -26,6 +26,7 @@ export default {
 
   reducers: {
     save(state, { payload }) {
+      console.log('save')
       return { ...state, ...payload }
     },
   },
