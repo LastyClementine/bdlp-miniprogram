@@ -24,7 +24,7 @@ function get_params(params, is_auth) {
 
 function get_signature(params) {
     let request = {
-        'timestamp': Math.round(new Date().getTime()/1000),
+        'timestamp': Math.round(new Date().getTime() / 1000),
         // 'timestamp': new Date().getTime(),
         ...params
     }
@@ -52,14 +52,37 @@ function calc_signature(parms) {
     }
 
     tmpStr = tmpStr + signKey
-    tmpStr=md5(tmpStr)
+    tmpStr = md5(tmpStr)
     return tmpStr
 }
 
-export default (options = {
+function refreshToken(options) {
+    Taro.login()
+        .then(res => {
+            if (res.code) {
+                invokeApi({
+                    api: 'index/Index/login',
+                    is_auth: false,
+                    data: {
+                        js_code: res.code,
+                    }
+                })
+                    .then(res => {
+                        if (res.status == 1) {
+                            Taro.setStorageSync('token', res.data.token)
+                            Taro.setStorageSync('uid', res.data.uid)
+                            invokeApi(options)
+                        }
+                    })
+            }
+        })
+
+}
+
+function invokeApi(options = {
     data: {},
     is_auth: true
-}) => {
+}) {
     return Taro.request({
         url: baseUrl + options.api,
         data: qs.stringify(get_params(options.data, options.is_auth)),
@@ -76,20 +99,20 @@ export default (options = {
             switch (data.status) {
                 case 1:
                     // console.log('成功')
-                    data.data = Decrypt(data.data,aes.key,aes.iv);
+                    data.data = Decrypt(data.data, aes.key, aes.iv);
                     break;
                 case 0:
                     console.log('普通异常')
                     Taro.showToast({
-                        title:data.info,
-                        icon:"none"
+                        title: data.info,
+                        icon: "none"
                     })
                     break;
                 case -1:
                     console.log('非法操作')
                     break;
                 case -2:
-                    console.log('登录失效')
+                    refreshToken(options)
                     break;
             }
             return data
@@ -101,3 +124,9 @@ export default (options = {
             console.log('请求失败', err)
         })
 }
+
+const Request = (params) => {
+    return invokeApi(params)
+}
+
+export default Request

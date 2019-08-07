@@ -1,5 +1,5 @@
 import Taro, {Component} from '@tarojs/taro'
-import {View, Text, Picker} from '@tarojs/components'
+import {View, Text, Picker, ScrollView} from '@tarojs/components'
 import {connect} from '@tarojs/redux'
 import './index.scss'
 import {AtIcon} from "taro-ui";
@@ -16,16 +16,11 @@ export default class Step_chart extends Component {
         navigationBarTitleText: '步数统计',
     }
 
-    componentDidMount = () => {
-        const barChartData = {
-            dimensions: {
-                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-            },
-            measures: [{
-                data: [10, 52, 200, 334, 390, 330, 220]
-            }]
-        }
+    state = {
+        unit: 0
+    }
 
+    componentDidMount = () => {
         const pieChartData = [
             {value: 9, name: '9天'},
             {value: 14, name: '14天'},
@@ -33,8 +28,16 @@ export default class Step_chart extends Component {
             {value: 12, name: '12天'},
         ];
 
+        Taro.getSystemInfo()
+            .then(res => {
+                this.setState({
+                    unit: res.windowWidth / 375
+                }, () => {
+
+                })
+            })
+
         //初始化表格
-        this.barChart.refresh(pieChartData);
         this.pieChart.refresh(pieChartData);
 
         //获取月统计数据
@@ -42,11 +45,10 @@ export default class Step_chart extends Component {
     }
 
     refPieChart = (node) => this.pieChart = node
-    refBarChart = (node) => this.barChart = node
 
     //获取数据
     monthlyStat = () => {
-        const {month,year} = this.props
+        const {month, year} = this.props
         this.props.dispatch({
             type: 'step_chart/monthlyStat',
             payload: {
@@ -60,11 +62,38 @@ export default class Step_chart extends Component {
         this.props.dispatch({
             type: 'step_chart/save',
             payload: {
-                month: new Date(e.detail.value).getMonth()+1,
+                month: new Date(e.detail.value).getMonth() + 1,
                 year: new Date(e.detail.value).getFullYear()
             }
         })
         this.monthlyStat()
+    }
+
+
+    formatDate = (date) => {
+        date = date * 1000
+        let month = new Date(date).getMonth() + 1
+        let day = new Date(date).getDate()
+        var week = new Date(date).getDay();//获取存储当前日期
+        var weekday = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+        return {
+            day: month + '/' + day,
+            week: weekday[week]
+        }
+    }
+
+    //计算高度
+    calcHeight = (data) => {
+        let arr = []
+        let max
+        for (let i in data) {
+            arr.push(data[i].step_num)
+        }
+        if (arr.length > 0) {
+            arr.sort()
+            max = arr[arr.length - 1]
+        }
+        return max || 0
     }
 
     render() {
@@ -73,11 +102,38 @@ export default class Step_chart extends Component {
             month,
             year
         } = this.props
-        console.log('month_data_chart',month_data_chart)
+        const {month_run_record} = month_data_chart
+        let max = this.calcHeight(month_run_record)
+        console.log('month_data_chart', month_data_chart)
         return (
             <View className='step_chart-page'>
                 <View className="bar-chart">
-                    <BarChart ref={this.refBarChart} />
+
+                    <ScrollView
+                        className='scroll-view'
+                        scrollX
+                        scrollWithAnimation
+                    >
+                        {month_run_record.map((item, index) => (
+                            <View className="item" key={item.date}>
+                                <View className="line"></View>
+                                <View className="date">
+                                    <View className="day">{this.formatDate(item.date).day}</View>
+                                    <View className="week">{this.formatDate(item.date).week}</View>
+                                </View>
+                                {max&&(
+                                    <View className="bar-wrapper">
+                                        <View className="bar" style={'height:' + (item.step_num / max) * 100 + '%;'}>
+                                            {item.step_num}
+                                        </View>
+                                    </View>
+                                )}
+
+                            </View>
+                        ))}
+                    </ScrollView>
+
+
                 </View>
 
                 <View className="sum-wrapper">
@@ -104,7 +160,7 @@ export default class Step_chart extends Component {
                     <View className="title">7月步数分布图</View>
                     <View className="content">
                         <View className="chart">
-                            <PieChart ref={this.refPieChart} />
+                            <PieChart ref={this.refPieChart}/>
                         </View>
                         <View className="line"></View>
                         <View className="sum">

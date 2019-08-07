@@ -20,7 +20,7 @@ export default {
                     yield put({
                         type: 'save',
                         payload: {
-                            month_data: data
+                            month_data_chart: data
                         }
                     })
                 }

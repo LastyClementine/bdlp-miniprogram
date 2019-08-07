@@ -3,8 +3,72 @@
 .step_chart-page {
   @include wh(100%, 100%);
   background: #f7f7f7;
+
   .bar-chart {
     height: 480px;
+    width: 100%;
+    background: linear-gradient(to bottom right, #35cb98, #23ad73);
+    padding-top: 20px;
+    .scroll-view{
+      white-space:nowrap;
+      .item {
+        height: 480px;
+        width: 64px;
+        position: relative;
+        margin: 0 10px;
+        display: inline-block;
+        .date {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 64px;
+          text-align: center;
+          font-size: 24px;
+          color: #f7f7f7;
+        }
+
+        .bar-wrapper{
+          height: 400px;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 64px;
+          .bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 64px;
+            border-radius: 32px 32px 0px 0px;
+            background-image: linear-gradient(0deg,
+                    #62deb4 0%,
+                    #94ffdc 100%),
+            linear-gradient(
+                            #94ffdc,
+                            #94ffdc);
+            text-align: center;
+            display: flex;
+            align-items: flex-end;
+            font-size: 22px;
+            font-family: $dinfont;
+            justify-content: center;
+            color: #ffffff;
+            text-align: center;
+            padding-bottom: 10px;
+          }
+        }
+
+        .line{
+          width: 1px;
+          height: 404px;
+          background-color: #ffffff;
+          opacity: 0.2;
+          position: absolute;
+          left: 31px;
+          bottom: 0;
+          //height: 404px;
+        }
+      }
+    }
 
   }
 
@@ -12,6 +76,7 @@
     overflow: hidden;
     border-bottom: 1px solid #f0f0f0;
     background: #ffffff;
+
     .title {
       padding: 0 40px;
       display: flex;
@@ -22,25 +87,28 @@
       color: #999999;
     }
 
-    .con{
+    .con {
       margin: 86px 0 76px 0;
       text-align: center;
-      .num{
+
+      .num {
         font-family: $dinfont;
         font-size: 78px;
         color: #333333;
       }
-      .unit{
+
+      .unit {
         font-size: 26px;
         color: #999999;
       }
     }
   }
 
-  .pie-chart{
+  .pie-chart {
     background: #ffffff;
     overflow: hidden;
     padding-bottom: 30px;
+
     .title {
       padding: 0 40px;
       display: flex;
@@ -51,40 +119,47 @@
       margin-bottom: 20px;
     }
 
-    .content{
+    .content {
       height: 254px;
       overflow: hidden;
       display: flex;
       align-items: center;
-      .chart{
+
+      .chart {
         width: 370px;
         height: 198px;
         margin-top: 56px;
         margin-left: 55px;
       }
-      .line{
+
+      .line {
         width: 1px;
         height: 106px;
         background-color: #f0f0f0;
       }
-      .sum{
+
+      .sum {
         padding-left: 80px;
-        .item{
-          &:first-child{
+
+        .item {
+          &:first-child {
             margin-bottom: 36px;
           }
-          .name{
+
+          .name {
             font-size: 26px;
             color: #999999;
             margin-bottom: 12px;
           }
-          .value{
-            .num{
+
+          .value {
+            .num {
               font-size: 48px;
               font-family: $dinfont;
               color: #333333;
             }
-            .unit{
+
+            .unit {
               font-size: 26px;
               color: #999999;
             }
@@ -93,20 +168,23 @@
       }
     }
 
-    .footer{
+    .footer {
       display: flex;
       align-items: center;
       justify-content: space-around;
       margin-top: 30px;
-      .item{
+
+      .item {
         display: flex;
         align-items: center;
-        .dot{
+
+        .dot {
           width: 16px;
           height: 16px;
           border-radius: 50%;
         }
-        .desc{
+
+        .desc {
           font-size: 22px;
           margin-left: 8px;
           color: #999999;

@@ -42,7 +42,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 16,
+			"current": 17,
 			"list": [
 				{
 					"id": -1,
@@ -153,6 +153,13 @@
 					"id": -1,
 					"name": "pages/step_statistics/index",
 					"pathName": "pages/step_statistics/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/step_chart/index",
+					"pathName": "pages/step_chart/index",
 					"query": "",
 					"scene": null
 				},
