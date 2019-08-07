@@ -1,22 +1,39 @@
 import Taro, { Component } from "@tarojs/taro";
 import * as echarts from "./ec-canvas/echarts";
+import {array} from "prop-types";
 
 function setChartData(chart, data) {
+
+    let dataArr=[];
+    let legendArr=[];
+    let arr = Object.keys(data);
+    for (let i = 1; i <= arr.length; i++) {
+      let a = {
+          "value": data[i].num,
+          "name": data[i].num + '天',
+      }
+      let b = data[i].desc;
+      legendArr.push(b);
+      dataArr = dataArr.concat(a)
+    }
+
   let option = {
-    color:['#f14864', '#1890ff','#2fc25b','#facd13'],
+    color:['#f14864', '#1890ff','#2fc25b','#facd13','#fa3df3'],
+    // legend: {
+    //   type: 'scroll',
+    //   // orient: 'vertical',
+    //   left: 0,
+    //   bottom: 0,
+    //   data:legendArr
+    // },
     series : [
       {
         name: '访问来源',
         type: 'pie',
-        radius : ['40%','66%'],
-        data:[
-          {value:9, name:'9天'},
-          {value:14, name:'14天'},
-          {value:20, name:'20天'},
-          {value:12, name:'12天'},
-        ],
+        center : ['48%','55%'],
+        radius : ['40%','70%'],
+        data: dataArr,
         itemStyle: {
-
           emphasis: {
             shadowBlur: 10,
             shadowOffsetX: 0,

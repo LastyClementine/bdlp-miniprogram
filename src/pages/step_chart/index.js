@@ -5,6 +5,7 @@ import './index.scss'
 import {AtIcon} from "taro-ui";
 import PieChart from "../../components/PieChart"
 import BarChart from "../../components/BarChart"
+import {any} from "prop-types";
 
 @connect(({step_chart, common, loading}) => ({
     ...step_chart,
@@ -17,17 +18,10 @@ export default class Step_chart extends Component {
     }
 
     state = {
-        unit: 0
+        unit: 0,
     }
 
     componentDidMount = () => {
-        const pieChartData = [
-            {value: 9, name: '9天'},
-            {value: 14, name: '14天'},
-            {value: 20, name: '20天'},
-            {value: 12, name: '12天'},
-        ];
-
         Taro.getSystemInfo()
             .then(res => {
                 this.setState({
@@ -37,11 +31,12 @@ export default class Step_chart extends Component {
                 })
             })
 
-        //初始化表格
-        this.pieChart.refresh(pieChartData);
-
         //获取月统计数据
         this.monthlyStat()
+    }
+
+    initChart = () => {
+        this.pieChart.refresh(this.state.month_data_chart.month_step_distribution)
     }
 
     refPieChart = (node) => this.pieChart = node
@@ -56,6 +51,7 @@ export default class Step_chart extends Component {
                 year
             }
         })
+        setTimeout(this.initChart,1000);
     }
 
     onMonthChange = e => {
@@ -82,29 +78,32 @@ export default class Step_chart extends Component {
         }
     }
 
-    //计算高度
-    calcHeight = (data) => {
-        let arr = []
-        let max
-        for (let i in data) {
-            arr.push(data[i].step_num)
-        }
-        if (arr.length > 0) {
-            arr.sort()
-            max = arr[arr.length - 1]
-        }
-        return max || 0
-    }
+    // //计算高度
+    // setData = (data) => {
+    //     let dataArr=[];
+    //     let arr = Object.keys(data);
+    //     for (let i = 1; i <= arr.length; i++) {
+    //         let a = {
+    //             "value": data[i].num,
+    //             "name": data[i].desc,
+    //         }
+    //         dataArr = dataArr.concat(a)
+    //     }
+    //     this.setState({
+    //         pieChartData: dataArr
+    //     })
+    // }
 
     render() {
+
         const {
             month_data_chart,
             month,
             year
         } = this.props
-        const {month_run_record} = month_data_chart
-        let max = this.calcHeight(month_run_record)
-        console.log('month_data_chart', month_data_chart)
+        const {month_run_record,month_step_distribution} = month_data_chart
+        let max = month_data_chart.month_max
+        // this.setData(month_step_distribution)
         return (
             <View className='step_chart-page'>
                 <View className="bar-chart">
@@ -181,21 +180,37 @@ export default class Step_chart extends Component {
                         </View>
                     </View>
                     <View className="footer">
+
+                        {/*{month_step_distribution.map((item, index) => (*/}
+
+                        {/*    <View className="item">*/}
+                        {/*       <View className="dot" style='background-color: #f14864;'></View>*/}
+                        {/*        /!*{{index} == 2 && <View className="dot" style='background-color: #1890ff;'></View>}*!/*/}
+                        {/*        /!*{{index} == 3 && <View className="dot" style='background-color: #2fc25b;'></View>}*!/*/}
+                        {/*        /!*{{index} == 4 && <View className="dot" style='background-color: #facd13;'></View>}*!/*/}
+                        {/*        <View className="desc">{item.desc}</View>*/}
+                        {/*    </View>*/}
+                        {/*))}*/}
+
                         <View className="item">
                             <View className="dot" style='background-color: #f14864;'></View>
-                            <View className="desc">6000步以下</View>
+                            <View className="desc">6千步以下</View>
                         </View>
                         <View className="item">
                             <View className="dot" style='background-color: #1890ff;'></View>
-                            <View className="desc">6000~8000步</View>
+                            <View className="desc">6~8千步</View>
                         </View>
                         <View className="item">
                             <View className="dot" style='background-color: #2fc25b;'></View>
-                            <View className="desc">8000~10000步</View>
+                            <View className="desc">8千~1万步</View>
                         </View>
                         <View className="item">
                             <View className="dot" style='background-color: #facd13;'></View>
-                            <View className="desc">10000步以上</View>
+                            <View className="desc">1~1.5万步</View>
+                        </View>
+                        <View className="item">
+                            <View className="dot" style='background-color: #fa3df3;'></View>
+                            <View className="desc">1.5万步以上</View>
                         </View>
                     </View>
                 </View>
