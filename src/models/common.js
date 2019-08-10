@@ -73,7 +73,7 @@ export default {
                 }
 
                 //需要授权注册
-                if (status == -1) {
+                if (status == -3) {
                     yield put({
                         type: 'save',
                         payload: {need_authorization: true}
