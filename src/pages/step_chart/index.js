@@ -132,8 +132,6 @@ export default class Step_chart extends Component {
                             </View>
                         ))}
                     </ScrollView>
-
-
                 </View>
 
                 <View className="sum-wrapper">

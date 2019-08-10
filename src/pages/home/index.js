@@ -362,22 +362,22 @@ export default class Home extends Component {
                                 </View>
                             </View>
                             <View className="cell">
-                                <View className="cell-it" onClick={this.goStepChart.bind(this)}>
+                                <Button className="cell-it" onClick={this.goStepChart.bind(this)}>
                                     <Image className="image" src={require('../../assets/images/bstj.png')}/>
                                     <View className="text">步数统计</View>
-                                </View>
-                                <View className="cell-it">
+                                </Button>
+                                <Button className="cell-it" openType="share">
                                     <Image className="image" src={require('../../assets/images/yqjr.png')}/>
                                     <View className="text">邀请加入</View>
-                                </View>
-                                <View className="cell-it" onClick={this.getTodayAchievement.bind(this)}>
+                                </Button>
+                                <Button className="cell-it" onClick={this.getTodayAchievement.bind(this)}>
                                     <Image className="image" src={require('../../assets/images/jrcj.png')}/>
                                     <View className="text">今日成就</View>
-                                </View>
-                                <View className="cell-it" onClick={this.goSetTime}>
+                                </Button>
+                                <Button className="cell-it" onClick={this.goSetTime}>
                                     <Image className="image" src={require('../../assets/images/sztx.png')}/>
                                     <View className="text">设置提醒</View>
-                                </View>
+                                </Button>
                             </View>
                         </View>
                     </View>

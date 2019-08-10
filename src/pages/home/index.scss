@@ -73,13 +73,15 @@
               color: #0bad61;
               font-size: 72px;
               margin-bottom: 16px;
-              button{
+
+              button {
                 padding: 0;
                 margin: 0;
                 background: #ffffff;
                 border: 0;
                 color: #0bad61;
-                &::after{
+
+                &::after {
                   border: 0;
                 }
               }
@@ -101,6 +103,18 @@
           display: flex;
           justify-content: space-around;
           align-items: center;
+
+          button {
+            padding: 0;
+            margin: 0;
+            background: #ffffff;
+            border: 0;
+            color: #0bad61;
+
+            &::after {
+              border: 0;
+            }
+          }
 
           .cell-it {
             flex: 1;
@@ -240,6 +254,7 @@
       .null {
         padding-bottom: 40px;
         padding-top: 56px;
+
         .null-image {
           width: 172px;
           height: 114px;
@@ -276,7 +291,8 @@
 
 
   }
-  .blank{
+
+  .blank {
     height: 50px;
     background: #f7f7f7;
   }
