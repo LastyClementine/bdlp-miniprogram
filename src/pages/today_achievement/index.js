@@ -1,5 +1,5 @@
 import Taro, {Component} from '@tarojs/taro'
-import {View, Text, Image} from '@tarojs/components'
+import {View, Text, Image, Button} from '@tarojs/components'
 import {connect} from '@tarojs/redux'
 import './index.scss'
 
@@ -24,25 +24,35 @@ export default class Today_achievement extends Component {
     }
 
     saveImage=()=>{
-        const {
-            achievement_data
-        } = this.props
-        Taro.getImageInfo({
-            // src:'https://www.baidu.com/img/bd_logo1.png',
-            src:achievement_data.cover,
-        })
-            .then(res=>{
-                Taro.saveImageToPhotosAlbum({
-                    filePath:res.path
-                })
-                    .then(res=>{
-                        Taro.showToast({
-                            title:"图片保存成功"
-                        })
-                    })
-            })
 
+        Taro.getSetting()
+            .then(res=>{
+                if (res.authSetting['scope.writePhotosAlbum']===false){//以前授权失败
+                    Taro.openSetting()
+                        .then(result=>{
+
+                        })
+                }else {
+                    const {
+                        achievement_data
+                    } = this.props
+                    Taro.getImageInfo({
+                        src:achievement_data.cover,
+                    })
+                        .then(res=>{
+                            Taro.saveImageToPhotosAlbum({
+                                filePath:res.path
+                            })
+                                .then(res=>{
+                                    Taro.showToast({
+                                        title:"图片保存成功"
+                                    })
+                                })
+                        })
+                }
+            })
     }
+
 
     render() {
         const {
@@ -87,11 +97,9 @@ export default class Today_achievement extends Component {
                     </View>
                 </View>
 
-                {achievement_data.cover&&(
-                    <View className="btn" onClick={this.saveImage}>
-                        保存图片
-                    </View>
-                )}
+                <View className="btn" onClick={this.saveImage}>
+                    保存图片
+                </View>
             </View>
         )
     }

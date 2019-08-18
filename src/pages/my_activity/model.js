@@ -4,7 +4,7 @@ export default {
   namespace: 'my_activity',
   state: {
     activity_data:{
-      now_event:{},
+      now_event:[],
       history_event:[]
     }
   },

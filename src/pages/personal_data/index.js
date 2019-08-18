@@ -33,7 +33,7 @@ export default class Personal_data extends Component {
     //修改昵称
     goUpdateNick() {
         Taro.navigateTo({
-            url: '/pages/update_nick/index'
+            url: '/pages/update_nick/index?nickname='+this.props.personal_data.nick_name
         })
     }
 
@@ -83,27 +83,22 @@ export default class Personal_data extends Component {
                     <View className="item">
                         <View className="list-l">学校</View>
                         <View className="list-c font-gray">{personal_data.school_name}</View>
-                        <AtIcon value='chevron-right' size='16' color='#b3b3b3' className='chevron-right'></AtIcon>
                     </View>
                     <View className="item">
                         <View className="list-l">部门</View>
                         <View className="list-c font-gray">{personal_data.department_name}</View>
-                        <AtIcon value='chevron-right' size='16' color='#b3b3b3' className='chevron-right'></AtIcon>
                     </View>
                     <View className="item">
                         <View className="list-l">姓名</View>
                         <View className="list-c font-gray">{personal_data.name}</View>
-                        <AtIcon value='chevron-right' size='16' color='#b3b3b3' className='chevron-right'></AtIcon>
                     </View>
                     <View className="item">
                         <View className="list-l">工号</View>
                         <View className="list-c font-gray">{personal_data.card_id}</View>
-                        <AtIcon value='chevron-right' size='16' color='#b3b3b3' className='chevron-right'></AtIcon>
                     </View>
                     <View className="item">
                         <View className="list-l">性别</View>
                         <View className="list-c font-gray">{personal_data.gender == 1 ? '男' : '女'}</View>
-                        <AtIcon value='chevron-right' size='16' color='#b3b3b3' className='chevron-right'></AtIcon>
                     </View>
                 </View>
 

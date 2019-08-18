@@ -1,5 +1,5 @@
 // 请求连接前缀
-export const baseUrl = 'http://dev.lptiyu.com/bdlp_api_teacher/public/index.php/'//熊
+export const baseUrl = 'https://dev.lptiyu.com/bdlp_api_teacher/public/index.php/'//熊
 export const appid = 'wx7515a3e1dd99570f'
 
 export const aes = {

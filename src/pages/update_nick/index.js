@@ -14,7 +14,12 @@ export default class Update_nick extends Component {
     }
 
     componentDidMount = () => {
-
+        this.props.dispatch({
+            type:'update_nick/save',
+            payload:{
+                nick_name:this.$router.params.nickname
+            }
+        })
     }
 
     onChange = (e) => {

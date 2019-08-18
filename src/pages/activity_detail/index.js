@@ -136,22 +136,22 @@ export default class Activity_detail extends Component {
             <View className='activity_detail-page'>
                 <View className="info">
                     <View className="info-item">
-                        <View className="label">活动名称</View>
+                        <View className="label">活动名称：</View>
                         <View className="desc">{detail_data.title}</View>
                     </View>
                     <View className="info-item">
-                        <View className="label">活动日期</View>
+                        <View className="label">活动日期：</View>
                         <View className="desc">{start_time}-{end_time}</View>
                     </View>
                     <View className="info-item">
-                        <View className="label">活动目标</View>
+                        <View className="label">活动目标：</View>
                         <View className="desc">
                             每日{detail_data.target_step_num}步为目标，共需达标{detail_data.target_num}次
                         </View>
                     </View>
-                    <View className="btns" onClick={this.goActivityInfo}>
-                        <View className="btn">活动介绍</View>
-                        <View className="btn">参与方式</View>
+                    <View className="btns" >
+                        <View className="btn" onClick={this.goActivityInfo}>活动介绍</View>
+                        <View className="btn" onClick={this.goStepStatistics}>达标记录</View>
                     </View>
                 </View>
                 <View className="opt-bar" onClick={this.goStepStatistics}>

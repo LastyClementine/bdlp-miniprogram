@@ -73,15 +73,18 @@ export default class Perfect_info extends Component {
             content:"信息提交后不可更改，请确认填写正确！",
         })
             .then(res=>{
-                this.props.dispatch({
-                    type: 'perfect_info/checkUserSchoolInfo',
-                    payload: {
-                        department_id:department_list[department_id].id,
-                        name,
-                        card_id,
-                        gender:gender_list[gender].id
-                    }
-                })
+                if (res.confirm==true){
+                    this.props.dispatch({
+                        type: 'perfect_info/checkUserSchoolInfo',
+                        payload: {
+                            department_id:department_list[department_id].id,
+                            name,
+                            card_id,
+                            gender:gender_list[gender].id
+                        }
+                    })
+                }
+
             })
 
     }

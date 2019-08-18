@@ -34,7 +34,6 @@ export default class Home extends Component {
                     unit: res.windowWidth / 375
                 }, () => {
                     this.circleInit()
-                    this.drawCircle()
                 })
             })
 
@@ -175,11 +174,11 @@ export default class Home extends Component {
 
     //设置目标值
     goSetTarget = () => {
-        if (this.props.is_certified==1){
-            Taro.showToast({
-                title:'请先授权认证',
-                icon:"none"
-            })
+        if (this.props.is_certified==1||this.props.need_run_auth){
+            // Taro.showToast({
+            //     title:'请先授权认证',
+            //     icon:"none"
+            // })
             return
         }
         Taro.navigateTo({
@@ -289,7 +288,7 @@ export default class Home extends Component {
             need_authorization
         } = this.props
         const {least_event} = index_data
-        const {outCircle, innerCircle} = this.state
+
         let percent = 0
         if (JSON.stringify(least_event) !== '{}') {
             percent = (least_event.user_num / least_event.target_num) * 100
@@ -306,38 +305,24 @@ export default class Home extends Component {
                                 </View>
                             ) : (
                                 <View className="title">
-                                    今日全校共{index_data.school_total_card_num}人打卡，你已击败{index_data.user_defeat_pec}%人
+                                    今日全校共{index_data.school_total_card_num||0}人打卡，你已击败{index_data.user_defeat_pec||0}%人
                                 </View>
                             )}
 
                             <View className="circle-wrapper" onClick={this.goSetTarget.bind(this)}>
                                 <View className="wrap">
-                                    {(need_run_auth || need_authorization) ? (
-                                        <View className="circle-box">
-                                            <Image
-                                                className="circle"
-                                                src={outCircle}
-                                            />
-
-                                            <Image
-                                                className="circle"
-                                                src={innerCircle}
-                                            />
-                                        </View>
-                                    ) : (
-                                        <View className="circle-box">
-                                            <Canvas
-                                                className="circle"
-                                                canvasId="canvasCircle"
-                                            >
-                                            </Canvas>
-                                            <Canvas
-                                                className="circle"
-                                                canvasId="canvasArcCir"
-                                            >
-                                            </Canvas>
-                                        </View>
-                                    )}
+                                    <View className="circle-box">
+                                        <Canvas
+                                            className="circle"
+                                            canvasId="canvasCircle"
+                                        >
+                                        </Canvas>
+                                        <Canvas
+                                            className="circle"
+                                            canvasId="canvasArcCir"
+                                        >
+                                        </Canvas>
+                                    </View>
 
                                 </View>
                                 <View className="data">
@@ -345,16 +330,23 @@ export default class Home extends Component {
                                     <View
                                         className="num"
                                     >
-                                        {need_run_auth ? (
+                                        {(need_authorization||is_certified==1)?(
+                                            <Button
+                                                openType="getUserInfo"
+                                                onGetUserInfo={this.regist.bind(this)}
+                                            >
+                                                授权认证
+                                            </Button>
+                                        ):(need_run_auth?(
                                             <Button
                                                 openType="openSetting"
                                                 onOpenSetting={this.openSetting}
                                             >
                                                 同步步数
                                             </Button>
-                                        ) : (
-                                            <Text>{loading['effects']['home/index'] ? 0 : (index_data.user_now_step_num || 0)}</Text>
-                                        )}
+                                        ):(
+                                            <Text>{index_data.user_now_step_num || 0}</Text>
+                                        ))}
 
                                     </View>
                                     <View

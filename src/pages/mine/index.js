@@ -88,7 +88,7 @@ export default class Mine extends Component {
             <View className='mine-page'>
                 <View className="top-wrapper">
                     <View className="top">
-                        <Image className="head-img" src={mine_data.user_avatar}/>
+                        <Image className="head-img" src={mine_data.user_avatar||require('../../assets/images/default_header.png')}/>
                         <View className="info">
                             <View className="name">
                                 {mine_data.nick_name ? (

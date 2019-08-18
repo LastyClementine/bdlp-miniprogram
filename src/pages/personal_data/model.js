@@ -26,7 +26,12 @@ export default {
 
     * syncUserAvatar({payload}, {call, put}) {
       try {
+        Taro.showLoading({
+          mask:true,
+          title:'同步中...'
+        })
         const {status, data} = yield call(personal_dataApi.syncUserAvatar, payload)
+        Taro.hideLoading()
         if (status == 1) {
           Taro.showToast({
             title:'头像同步成功'
@@ -36,6 +41,7 @@ export default {
           })
         }
       } catch (e) {
+        Taro.hideLoading()
         console.log(e)
       }
     },
@@ -46,7 +52,7 @@ export default {
         const {status, data} = yield call(personal_dataApi.exitSchoolTest, payload)
         console.log('status',status)
         if (status == 1) {
-          Taro.removeStorageSync('token')
+          // Taro.removeStorageSync('token')
           yield put({
             type:'common/save',
             payload:{

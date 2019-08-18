@@ -18,11 +18,11 @@
 
     .info-item {
       margin-top: 36px;
-
+      display: flex;
+      align-items: center;
       .label {
         font-size: 26px;
         color: #323232;
-        margin-bottom: 18px;
       }
 
       .desc {

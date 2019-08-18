@@ -61,7 +61,7 @@ export default class Index extends Component {
         return (
             <View className='index-page'>
                 <AtMessage/>
-                <Image className="avatar" src={user_info.user_avatar}/>
+                <Image className="avatar" src={user_info.user_avatar||require('../../assets/images/default_header.png')}/>
                 <View className="title">教职工认证</View>
                 <View className="mark">需完成教职工认证后，才可参加校园活动，请联系学校管理员索取口令码：</View>
                 <View className="experience">

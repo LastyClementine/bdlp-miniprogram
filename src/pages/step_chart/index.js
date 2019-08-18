@@ -154,7 +154,7 @@ export default class Step_chart extends Component {
                 </View>
 
                 <View className="pie-chart">
-                    <View className="title">7月步数分布图</View>
+                    <View className="title">{month}月步数分布图</View>
                     <View className="content">
                         <View className="chart">
                             <PieChart ref={this.refPieChart}/>
