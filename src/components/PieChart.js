@@ -18,7 +18,7 @@ function setChartData(chart, data) {
     }
 
   let option = {
-    color:['#f14864', '#1890ff','#2fc25b','#facd13','#fa3df3'],
+    color:['#f14864','#1890ff','#2fc25b','#facd13','#fa3df3'],
     // legend: {
     //   type: 'scroll',
     //   // orient: 'vertical',
@@ -30,8 +30,8 @@ function setChartData(chart, data) {
       {
         name: '访问来源',
         type: 'pie',
-        center : ['48%','55%'],
-        radius : ['40%','70%'],
+        center : ['50%','58%'],
+        radius : ['25%','43%'],
         data: dataArr,
         itemStyle: {
           emphasis: {

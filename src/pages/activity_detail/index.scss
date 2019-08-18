@@ -21,13 +21,22 @@
       display: flex;
       align-items: center;
       .label {
-        font-size: 26px;
+        font-size: 28px;
         color: #323232;
       }
 
       .desc {
         color: #5b5b5b;
-        font-size: 26px;
+        font-size: 28px;
+      }
+
+      .title {
+        color: #333333;
+        font-weight: bold;
+      }
+
+      .subTitle {
+        color: #888888;
       }
     }
 
@@ -122,7 +131,7 @@
         height: 110px;
 
         .label {
-          font-size: 24px;
+          font-size: 28px;
           color: #666;
         }
 
@@ -152,7 +161,7 @@
       align-items: center;
 
       .tab {
-        font-size: 24px;
+        font-size: 26px;
         color: #9a9a9a;
         flex: 1;
         text-align: center;

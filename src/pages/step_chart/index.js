@@ -135,7 +135,9 @@ export default class Step_chart extends Component {
 
                 <View className="sum-wrapper">
                     <View className="title">
-                        <View className="title-l">{month}月总步数：</View>
+                        <View className="title-l">{month}月步数分布图</View>
+                        {/*<View className="title-l">{month}月总步数：</View>*/}
+
                         <Picker
                             className="title-r"
                             mode='date'
@@ -147,71 +149,66 @@ export default class Step_chart extends Component {
                         </Picker>
 
                     </View>
-                    <View className="con">
-                        <Text className='num'>{month_data_chart.month_sum_step}</Text>
-                        <Text className="unit">步</Text>
-                    </View>
-                </View>
-
-                <View className="pie-chart">
-                    <View className="title">{month}月步数分布图</View>
-                    <View className="content">
-                        <View className="chart">
-                            <PieChart ref={this.refPieChart}/>
-                        </View>
-                        <View className="line"></View>
-                        <View className="sum">
-                            <View className="item">
-                                <View className="name">本月累计</View>
-                                <View className="value">
-                                    <Text className="num">{month_data_chart.month_sum_step}</Text>
-                                    <Text className="unit">步</Text>
-                                </View>
+                    <View className="pie-chart">
+                        <View className="content">
+                            <View className="chart">
+                                <PieChart ref={this.refPieChart}/>
                             </View>
-                            <View className="item">
-                                <View className="name">本月最高</View>
-                                <View className="value">
-                                    <Text className="num">{month_data_chart.month_max}</Text>
-                                    <Text className="unit">步</Text>
+                            <View className="line"></View>
+                            <View className="sum">
+                                <View className="item">
+                                    <View className="name">本月累计</View>
+                                    <View className="value">
+                                        <Text className="num">{month_data_chart.month_sum_step}</Text>
+                                        <Text className="unit">步</Text>
+                                    </View>
+                                </View>
+                                <View className="item">
+                                    <View className="name">本月最高</View>
+                                    <View className="value">
+                                        <Text className="num">{month_data_chart.month_max}</Text>
+                                        <Text className="unit">步</Text>
+                                    </View>
                                 </View>
                             </View>
                         </View>
-                    </View>
-                    <View className="footer">
+                        <View className="footer">
 
-                        {/*{month_step_distribution.map((item, index) => (*/}
+                            {/*{month_step_distribution.map((item, index) => (*/}
 
-                        {/*    <View className="item">*/}
-                        {/*       <View className="dot" style='background-color: #f14864;'></View>*/}
-                        {/*        /!*{{index} == 2 && <View className="dot" style='background-color: #1890ff;'></View>}*!/*/}
-                        {/*        /!*{{index} == 3 && <View className="dot" style='background-color: #2fc25b;'></View>}*!/*/}
-                        {/*        /!*{{index} == 4 && <View className="dot" style='background-color: #facd13;'></View>}*!/*/}
-                        {/*        <View className="desc">{item.desc}</View>*/}
-                        {/*    </View>*/}
-                        {/*))}*/}
+                            {/*    <View className="item">*/}
+                            {/*       <View className="dot" style='background-color: #f14864;'></View>*/}
+                            {/*        /!*{{index} == 2 && <View className="dot" style='background-color: #1890ff;'></View>}*!/*/}
+                            {/*        /!*{{index} == 3 && <View className="dot" style='background-color: #2fc25b;'></View>}*!/*/}
+                            {/*        /!*{{index} == 4 && <View className="dot" style='background-color: #facd13;'></View>}*!/*/}
+                            {/*        <View className="desc">{item.desc}</View>*/}
+                            {/*    </View>*/}
+                            {/*))}*/}
 
-                        <View className="item">
-                            <View className="dot" style='background-color: #f14864;'></View>
-                            <View className="desc">6千步以下</View>
-                        </View>
-                        <View className="item">
-                            <View className="dot" style='background-color: #1890ff;'></View>
-                            <View className="desc">6~8千步</View>
-                        </View>
-                        <View className="item">
-                            <View className="dot" style='background-color: #2fc25b;'></View>
-                            <View className="desc">8千~1万步</View>
-                        </View>
-                        <View className="item">
-                            <View className="dot" style='background-color: #facd13;'></View>
-                            <View className="desc">1~1.5万步</View>
-                        </View>
-                        <View className="item">
-                            <View className="dot" style='background-color: #fa3df3;'></View>
-                            <View className="desc">1.5万步以上</View>
+                            <View className="item">
+                                <View className="dot" style='background-color: #f14864;'></View>
+                                <View className="desc">6千步以下</View>
+                            </View>
+                            <View className="item">
+                                <View className="dot" style='background-color: #1890ff;'></View>
+                                <View className="desc">6~8千步</View>
+                            </View>
+                            <View className="item">
+                                <View className="dot" style='background-color: #2fc25b;'></View>
+                                <View className="desc">8千~1万步</View>
+                            </View>
+                            <View className="item">
+                                <View className="dot" style='background-color: #facd13;'></View>
+                                <View className="desc">1~1.5万步</View>
+                            </View>
+                            <View className="item">
+                                <View className="dot" style='background-color: #fa3df3;'></View>
+                                <View className="desc">1.5万步以上</View>
+                            </View>
                         </View>
                     </View>
                 </View>
+
             </View>
         )
     }

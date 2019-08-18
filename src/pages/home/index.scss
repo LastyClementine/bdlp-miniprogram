@@ -2,7 +2,7 @@
 
 .home-page {
   //@include wh(100%, 100%);
-
+  font-family: "Microsoft YaHei UI";
   //background: #0bad61;
   .wrapper {
     .page-top-bg {
@@ -14,8 +14,8 @@
         //border-radius: 48px 48px 0px 0px;
 
         .title {
-          font-size: 24px;
-          color: #9b9b9b;
+          font-size: 26px;
+          color: #7b7b7b;
           text-align: center;
           line-height: 154px;
         }
@@ -62,17 +62,18 @@
             border-radius: 50%;
 
             .desc {
-              margin-top: 102px;
-              font-size: 24px;
+              margin-top: 75px;
+              font-size: 29px;
               color: #666666;
               margin-bottom: 32px;
+              font-weight: bold;
             }
 
             .num {
               font-family: $dinfont;
               color: #0bad61;
-              font-size: 72px;
-              margin-bottom: 16px;
+              font-size: 95px;
+              margin-bottom: 12px;
 
               button {
                 padding: 0;
@@ -88,7 +89,7 @@
             }
 
             .target {
-              font-size: 24px;
+              font-size: 29px;
               color: #999999;
             }
           }
@@ -131,8 +132,8 @@
             }
 
             .text {
-              color: #909090;
-              font-size: 24px;
+              color: #111111;
+              font-size: 27px;
             }
           }
         }
@@ -164,6 +165,7 @@
         .name {
           color: #313131;
           font-size: 32px;
+          font-weight: bolder;
         }
 
         .btn {
@@ -204,7 +206,7 @@
         border-bottom: 1px solid #efefef;
         //align-items: flex-end;
         .footer-l {
-          font-size: 22px;
+          font-size: 24px;
           color: #303f4d;
           display: table-cell;
           vertical-align: bottom;
@@ -219,7 +221,7 @@
 
         .footer-r {
           padding-top: 20px;
-          font-size: 18px;
+          font-size: 24px;
           color: #b6b6b6;
           display: table-cell;
           vertical-align: bottom;
@@ -246,8 +248,9 @@
           border-top: 1px solid #f0f0f0;
           line-height: 108px;
           text-align: center;
-          font-size: 28px;
+          font-size: 32px;
           color: #21ac6c;
+          font-weight: bolder;
         }
       }
 

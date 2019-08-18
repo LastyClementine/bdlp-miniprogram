@@ -136,16 +136,16 @@ export default class Activity_detail extends Component {
             <View className='activity_detail-page'>
                 <View className="info">
                     <View className="info-item">
-                        <View className="label">活动名称：</View>
-                        <View className="desc">{detail_data.title}</View>
+                        {/*<View className="label">活动名称：</View>*/}
+                        <View className="desc title">{detail_data.title}</View>
                     </View>
                     <View className="info-item">
                         <View className="label">活动日期：</View>
-                        <View className="desc">{start_time}-{end_time}</View>
+                        <View className="desc subTitle">{start_time}-{end_time}</View>
                     </View>
                     <View className="info-item">
                         <View className="label">活动目标：</View>
-                        <View className="desc">
+                        <View className="desc subTitle">
                             每日{detail_data.target_step_num}步为目标，共需达标{detail_data.target_num}次
                         </View>
                     </View>
