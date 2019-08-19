@@ -154,10 +154,10 @@ export default class Activity_detail extends Component {
                         <View className="btn" onClick={this.goStepStatistics}>达标记录</View>
                     </View>
                 </View>
-                <View className="opt-bar" onClick={this.goStepStatistics}>
-                    <View className="name">达标记录</View>
-                    <AtIcon value='chevron-right' size='18' color='#c4c4c7' className='chevron-right'></AtIcon>
-                </View>
+                {/*<View className="opt-bar" onClick={this.goStepStatistics}>*/}
+                {/*    <View className="name">达标记录</View>*/}
+                {/*    <AtIcon value='chevron-right' size='18' color='#c4c4c7' className='chevron-right'></AtIcon>*/}
+                {/*</View>*/}
                 <View className="ranking">
                     <View className="title">活动排名</View>
                     {/*即将开始*/}
@@ -290,7 +290,7 @@ export default class Activity_detail extends Component {
                                                 <View className="times">{item.achieve_num}次</View>
                                             </View>
                                         ):(
-                                            <View className="steps">{item.step_num}</View>
+                                            <View className={item.step_num < detail_data.target_step_num ? 'grey steps' : 'green steps'}>{item.step_num}</View>
                                         )}
 
                                     </View>

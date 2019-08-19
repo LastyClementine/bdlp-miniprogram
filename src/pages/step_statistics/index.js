@@ -169,7 +169,7 @@ export default class Step_statistics extends Component {
                                                                     <Text style='color:#999;'>{month_run_record[it * 1 - 1].step_num}</Text>
                                                                 )}</Text>
                                                             ) : (
-                                                                <Text style='color:#1890ff;'>未参与</Text>
+                                                                <Text style='color:#888888;'>—</Text>
                                                             )}
 
                                                         </View>

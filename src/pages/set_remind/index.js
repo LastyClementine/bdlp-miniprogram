@@ -29,7 +29,7 @@ export default class Set_remind extends Component {
         this.props.dispatch({
             type: 'set_remind/setRemind',
             payload: {
-                is_remind: is_remind ? is_remind * 1 : 1,
+                is_remind: (is_remind ? is_remind * 1 : 1).toString(),
                 remind_hour: remind_time ? remind_time.split(':')[0] : target_info.remind_hour,
                 remind_minute: remind_time ? remind_time.split(':')[1] : target_info.remind_minute,
             }
@@ -71,7 +71,7 @@ export default class Set_remind extends Component {
                 <View className="list" style="margin-top:0;">
                     <View className="item">
                         <View className="list-l">开启推送提醒</View>
-                        <Switch checked={target_info.is_remind||true} onChange={this.onSwitchChange}/>
+                        <Switch checked={target_info.is_remind} onChange={this.onSwitchChange}/>
                     </View>
                 </View>
 

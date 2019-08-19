@@ -97,6 +97,7 @@
 
               .steps {
                 font-size: 24px;
+                font-weight: bolder;
                 color: #0bad61;
 
                 &.none {
@@ -137,7 +138,7 @@
 
         }
         .unit{
-          transform: translateY(-16px);
+          transform: translateY(-10px);
           font-size: 30px;
         }
       }

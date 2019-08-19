@@ -1,5 +1,7 @@
 @import "../../styles/mixin";
-
+page{
+  background-color:#f7f7f7;
+}
 .my_activity-page {
   //padding-bottom: 50px;
   background: #f7f7f7;
@@ -15,6 +17,7 @@
     background: #ffffff;
     padding: 0 40px;
     overflow: hidden;
+    box-shadow: 0px 1px 4px 0px #eeeeee;
     .activity-top{
       display: flex;
       align-items: center;
@@ -24,7 +27,8 @@
       margin-bottom: 30px;
       .name{
         color: #313131;
-        font-size: 32px;
+        font-size: 34px;
+        font-weight: bolder;
       }
       .btn{
         width: 118px;
@@ -63,7 +67,7 @@
       border-bottom: 1px solid #efefef;
       //align-items: flex-end;
       .footer-l{
-        font-size: 22px;
+        font-size: 24px;
         color: #303f4d;
         display: table-cell;
         vertical-align: bottom;
@@ -77,12 +81,12 @@
 
       .footer-r{
         padding-top: 20px;
-        font-size: 18px;
+        font-size: 22px;
         color: #b6b6b6;
         display: table-cell;
         vertical-align: bottom;
         text{
-          font-size: 28px;
+          font-size: 32px;
           font-family: $dinfont;
           margin-right: 4px;
         }
@@ -102,8 +106,9 @@
         border-top: 1px solid #f0f0f0;
         line-height: 108px;
         text-align: center;
-        font-size: 28px;
+        font-size: 32px;
         color: #21ac6c;
+        font-weight: bolder;
       }
     }
 

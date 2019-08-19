@@ -97,7 +97,7 @@ export default class Today_achievement extends Component {
                     </View>
                 </View>
 
-                <View className="btn" onClick={this.saveImage}>
+                <View className="btn white" onClick={this.saveImage}>
                     保存图片
                 </View>
             </View>
