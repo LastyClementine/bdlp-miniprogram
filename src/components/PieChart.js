@@ -7,39 +7,46 @@ function setChartData(chart, data) {
     let dataArr=[];
     let legendArr=[];
     let arr = Object.keys(data);
+    let steps=['6千步以下','6~8千步','8千~1万步','1~1.5万步','1.5万步以上'];
     for (let i = 1; i <= arr.length; i++) {
       let a = {
           "value": data[i].num,
-          "name": data[i].num + '天',
-      }
+          "name": steps[i-1],
+      };
       let b = data[i].desc;
       legendArr.push(b);
       dataArr = dataArr.concat(a)
     }
-
+  console.log('dataArr',dataArr)
   let option = {
     color:['#f14864','#1890ff','#2fc25b','#facd13','#fa3df3'],
-    // legend: {
-    //   type: 'scroll',
-    //   // orient: 'vertical',
-    //   left: 0,
-    //   bottom: 0,
-    //   data:legendArr
-    // },
     series : [
       {
         name: '访问来源',
         type: 'pie',
-        center : ['50%','58%'],
-        radius : ['25%','43%'],
+        center : ['48%','52%'],
+        radius : ['0.1%','55%'],
         data: dataArr,
-        itemStyle: {
-          emphasis: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)'
+        avoidLabelOverlap: false,
+        label: {
+          show: true,
+          position: 'outside',
+          formatter: '{c}天',
+        },
+        labelLine: {
+          normal: {
+            show: true,
+            length:6,
+            length2:0,
           }
         }
+        // itemStyle: {
+        //   emphasis: {
+        //     shadowBlur: 10,
+        //     shadowOffsetX: 0,
+        //     shadowColor: 'rgba(0, 0, 0, 0.5)'
+        //   }
+        // }
       }
     ]
   };
