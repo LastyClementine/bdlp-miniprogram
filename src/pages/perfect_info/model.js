@@ -12,7 +12,6 @@ export default {
     effects: {
         //提交学校信息认证
         * checkUserSchoolInfo({payload}, {call, put}) {
-            console.log(payload)
             try {
                 const {status, data} = yield call(perfect_infoApi.checkUserSchoolInfo, payload)
                 if (status == 1) {

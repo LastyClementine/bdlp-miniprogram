@@ -1,5 +1,5 @@
 import Taro, {Component} from '@tarojs/taro'
-import {View, Text, Image, Button} from '@tarojs/components'
+import {View, Text, Image, Button, Canvas} from '@tarojs/components'
 import {connect} from '@tarojs/redux'
 import './index.scss'
 
@@ -36,10 +36,12 @@ export default class Today_achievement extends Component {
                     const {
                         achievement_data
                     } = this.props
+                    console.log('achievement_data',achievement_data);
                     Taro.getImageInfo({
                         src:achievement_data.cover,
                     })
                         .then(res=>{
+                            console.log('res',res);
                             Taro.saveImageToPhotosAlbum({
                                 filePath:res.path
                             })
@@ -58,11 +60,11 @@ export default class Today_achievement extends Component {
         const {
             achievement_data
         } = this.props
-        console.log('achievement_data',achievement_data)
         return (
             <View className='today_achievement-page'>
                 <View className="wrapper">
                     <Image className="bg-image" src={achievement_data.cover}/>
+                    <Canvas className='canvas-poster' canvas-id='canvasposter'></Canvas>
                     <View className="content">
                         <View className="top">
                             <Image className="header-img" src={achievement_data.user_avatar}/>

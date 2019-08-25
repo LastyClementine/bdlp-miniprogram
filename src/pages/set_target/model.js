@@ -21,8 +21,6 @@ export default {
                             target_type:data.target_type
                         }
                     })
-
-                    console.log('data',data)
                     if (data.is_remind){
                         yield put({
                             type:'set_remind/save',

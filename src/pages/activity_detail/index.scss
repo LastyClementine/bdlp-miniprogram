@@ -31,8 +31,10 @@
       }
 
       .title {
+        font-size: 30px;
         color: #333333;
         font-weight: bold;
+        padding-bottom: 10px;
       }
 
       .subTitle {
@@ -41,16 +43,18 @@
     }
 
     .btns {
-      padding: 0 80px;
+      //padding: 0 80px;
       display: flex;
       align-items: center;
       margin-top: 54px;
+      margin-left: -40px;
 
       .btn {
         flex: 1;
         text-align: center;
-        font-size: 28px;
+        font-size: 30px;
         color: #05b25e;
+        font-weight: bolder;
 
         &:first-child {
           border-right: 1px solid #cbcbcb;
@@ -108,9 +112,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 24px;
+      font-size: 30px;
       color: #00ad5a;
       padding-bottom: 32px;
+      margin-top: 20px;
+      padding-top: 20px;
 
       .chevron-down {
         margin-left: 8px;
@@ -131,19 +137,18 @@
         height: 110px;
 
         .label {
-          font-size: 28px;
-          color: #666;
+          font-size: 26px;
+          color: #aaa;
+          padding-right: 10px;
         }
 
         .value {
-          font-size: 24px;
+          font-size: 26px;
           color: #323232;
-          transform: translateY(2px);
-
+          //transform: translateY(2px);
           text {
             font-family: $dinfont;
-            font-size: 30px;
-
+            font-size: 36px;
           }
         }
       }
@@ -159,6 +164,7 @@
       height: 88px;
       display: flex;
       align-items: center;
+      font-weight: bolder;
 
       .tab {
         font-size: 26px;
@@ -202,6 +208,16 @@
         height: 140px;
         border-bottom: 1px solid #f6f6f6;
 
+        .item {
+          vertical-align: bottom;
+          .step {
+            font-size: 52px;
+            font-family: $dinfont;
+            color: #08ad5a;
+            margin-right: 5px;
+          }
+        }
+
         .item-l {
           display: flex;
           align-items: center;
@@ -226,13 +242,13 @@
           }
 
           .name {
-            font-size: 26px;
+            font-size: 32px;
             color: #2f2f2f;
           }
         }
 
         .steps {
-          font-size: 34px;
+          font-size: 48px;
           font-family: $dinfont;
           transform: translateY(10px);
           color: #08ad5a;
@@ -260,11 +276,20 @@
 
       .me {
         .steps {
-          color: #343434;
+          color: #08ad5a;
+        }
+
+        .grey {
+          color: lightgrey;
+        }
+
+        .green {
+          color: #08ad5a;
         }
 
         margin-bottom: 16px;
       }
+
     }
   }
 }

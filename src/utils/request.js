@@ -98,7 +98,6 @@ function invokeApi(options = {
         if (statusCode >= 200 && statusCode < 300) {
             switch (data.status) {
                 case 1:
-                    // console.log('成功')
                     data.data = Decrypt(data.data, aes.key, aes.iv);
                     break;
                 case 0:

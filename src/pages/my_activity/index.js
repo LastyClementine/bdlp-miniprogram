@@ -28,6 +28,7 @@ export default class My_activity extends Component {
     }
 
     goActivityDetail = (id,event_type) => {
+        console.log(event_type)
         Taro.navigateTo({
             url: '/pages/activity_detail/index?id='+id+'&event_type='+event_type
         })
@@ -84,7 +85,6 @@ export default class My_activity extends Component {
     render() {
         const {activity_data,is_certified} = this.props
         const {now_event, history_event} = activity_data
-        console.log('activity_data',activity_data)
         return (
             <View className='my_activity-page'>
                 {is_certified==1?(
@@ -110,7 +110,8 @@ export default class My_activity extends Component {
                                         当前活动
                                     </View>
                                     {now_event.map((item, index) => (
-                                        <View className="activity-con" key={index} style='margin-bottom:10px;'>
+                                        <View className="activity-con" key={index} style='margin-bottom:10px;'
+                                              onClick={this.goActivityDetail.bind(this,item.event_id,item.event_type)}>
                                             <View className="activity-top">
                                                 <View className="name">{item.title}</View>
                                                 {item.event_type == 1 && (
@@ -143,7 +144,6 @@ export default class My_activity extends Component {
                                             <View className="detail-wrapper">
                                                 <View
                                                     className="detail"
-                                                    onClick={this.goActivityDetail.bind(this,item.event_id,item.event_type)}
                                                 >
                                                     查看详情
                                                 </View>
@@ -159,7 +159,8 @@ export default class My_activity extends Component {
                                         历史活动
                                     </View>
                                     {history_event.map((item, index) => (
-                                        <View className="activity-con" key={index} style='margin-bottom:10px;'>
+                                        <View className="activity-con" key={index} style='margin-bottom:10px;'
+                                              onClick={this.goActivityDetail.bind(this,item.event_id,item.event_type)}>
                                             <View className="activity-top">
                                                 <View className="name">{item.title}</View>
                                                 {item.event_type == 1 && (
@@ -192,7 +193,6 @@ export default class My_activity extends Component {
                                             <View className="detail-wrapper">
                                                 <View
                                                     className="detail"
-                                                    onClick={this.goActivityDetail.bind(this,item.event_id,item.event_type)}
                                                 >
                                                     查看详情
                                                 </View>

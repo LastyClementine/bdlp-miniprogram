@@ -115,7 +115,6 @@ export default class Step_statistics extends Component {
     render() {
         const {month_data} = this.props
         let {month_run_record} = month_data
-        console.log('month_data', month_data)
         const target_step_num=month_data.target_step_num||0
         const {curMonth, curYear, dayList} = this.state
         return (

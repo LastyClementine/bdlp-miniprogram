@@ -12,7 +12,6 @@ export default {
       try {
         const {status, data} = yield call(today_achievementApi.getTodayAchievement, payload)
         if (status == 1) {
-          console.log('获取成功')
           yield put({
             type:'save',
             payload:{

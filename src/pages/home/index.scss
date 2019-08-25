@@ -72,7 +72,7 @@
             .num {
               font-family: $dinfont;
               color: #0bad61;
-              font-size: 95px;
+              font-size: 105px;
               margin-bottom: 12px;
 
               button {
@@ -133,7 +133,7 @@
 
             .text {
               color: #111111;
-              font-size: 27px;
+              font-size: 30px;
             }
           }
         }
@@ -164,18 +164,19 @@
 
         .name {
           color: #313131;
-          font-size: 34px;
+          font-size: 36px;
           font-weight: bolder;
         }
 
         .btn {
 
-          width: 118px;
+          width: 90px;
           height: 42px;
           display: flex;
           align-items: center;
           justify-content: center;
           font-size: 22px;
+          border-radius: 12px;
 
           &.wait {
             background: #dcf3fc;
@@ -195,7 +196,7 @@
       }
 
       .mark {
-        font-size: 24px;
+        font-size: 26px;
         color: #9a9a9a;
       }
 
@@ -213,21 +214,21 @@
 
           text {
             font-family: $dinfont;
-            font-size: 58px;
+            font-size: 80px;
             margin-right: 12px;
             transform: translateY(4px);
           }
         }
 
         .footer-r {
-          padding-top: 20px;
+          padding-top: 45px;
           font-size: 24px;
           color: #b6b6b6;
           display: table-cell;
           vertical-align: bottom;
 
           text {
-            font-size: 28px;
+            font-size: 40px;
             font-family: $dinfont;
             margin-right: 4px;
           }

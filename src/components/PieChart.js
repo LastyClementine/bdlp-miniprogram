@@ -17,7 +17,6 @@ function setChartData(chart, data) {
       legendArr.push(b);
       dataArr = dataArr.concat(a)
     }
-  console.log('dataArr',dataArr)
   let option = {
     color:['#f14864','#1890ff','#2fc25b','#facd13','#fa3df3'],
     series : [
@@ -29,15 +28,24 @@ function setChartData(chart, data) {
         data: dataArr,
         avoidLabelOverlap: false,
         label: {
-          show: true,
-          position: 'outside',
-          formatter: '{c}天',
+          normal: {
+            show: true,
+            position: 'outside',
+            formatter: '{c}天',
+          },
+          emphasis: {
+            show: true,
+            textStyle: {
+              fontSize: '20',
+              fontWeight: 'bold'
+            }
+          },
         },
         labelLine: {
           normal: {
             show: true,
-            length:6,
-            length2:0,
+            length:12,
+            length2:1,
           }
         }
         // itemStyle: {

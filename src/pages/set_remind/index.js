@@ -24,12 +24,10 @@ export default class Set_remind extends Component {
 
     componentWillUnmount() {
         const {is_remind, remind_time, target_info} = this.props
-
-        console.log('is_remind', is_remind)
         this.props.dispatch({
             type: 'set_remind/setRemind',
             payload: {
-                is_remind: (is_remind ? is_remind * 1 : 1).toString(),
+                is_remind: (is_remind ? is_remind : 0).toString(),
                 remind_hour: remind_time ? remind_time.split(':')[0] : target_info.remind_hour,
                 remind_minute: remind_time ? remind_time.split(':')[1] : target_info.remind_minute,
             }
@@ -61,8 +59,6 @@ export default class Set_remind extends Component {
             target_info,
             remind_time,
         } = this.props
-        console.log('target_info',target_info)
-        console.log('remind_time',remind_time)
         return (
             <View className='set_remind-page'>
                 <View className="sub-title">
@@ -87,7 +83,7 @@ export default class Set_remind extends Component {
                             <View
                                 className="list-c font-gray"
                             >
-                                {remind_time ? ('每天' + remind_time) : '未开启' }
+                                {remind_time ? ('每天' + remind_time) : ('每天' + target_info.remind_hour + ':' + target_info.remind_minute) }
                             </View>
                             <AtIcon value='chevron-right' size='16' color='#b3b3b3' className='chevron-right'></AtIcon>
                         </View>

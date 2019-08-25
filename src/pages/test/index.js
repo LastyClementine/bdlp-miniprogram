@@ -73,10 +73,6 @@ export default class Test extends Component {
         let nowWeek = new Date(nowMonthFirstDate).getDay() ? new Date(nowMonthFirstDate).getDay() : 7; // 获取当月第一天星期几
         let newDateList = []; // 创建日期数组
         let startDay = 1 - nowWeek; // 开始日期的下标  因为 setDate(0)是上个月最后一天  所以是2-nowWeek
-    
-        console.log('当月1号日期',nowMonthFirstDate)
-        console.log('当月第一天星期几',nowWeek)
-        console.log('开始日期的下标',startDay)
 
         let showDayLength = nowWeek <6 ? 35 : 42;  // 如果5行能显示下一个月 就只显示5行
         // 循环处理 获取日历上应该显示的日期

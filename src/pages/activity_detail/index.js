@@ -124,10 +124,12 @@ export default class Activity_detail extends Component {
         } = this.props
         const {user_rank, today_rank, achieve_num} = rank_data
         let rank = today_rank||[]
-        console.log('rank_data',rank_data,detail_data)
         const {event_type} = this.$router.params
         //活动类型为 达标率排名 并且是进行中的状态
         if (rank_type == '3' && event_type == 2) {
+            rank = rank_data.rank||[]
+        }
+        if (event_type == 3) {
             rank = rank_data.rank||[]
         }
         let start_time = this.formatDate(detail_data.start_time)
@@ -159,7 +161,7 @@ export default class Activity_detail extends Component {
                 {/*    <AtIcon value='chevron-right' size='18' color='#c4c4c7' className='chevron-right'></AtIcon>*/}
                 {/*</View>*/}
                 <View className="ranking">
-                    <View className="title">活动排名</View>
+                    {/*<View className="title">活动排名</View>*/}
                     {/*即将开始*/}
                     {event_type == 1 && (
                         <View className="null">
@@ -256,7 +258,7 @@ export default class Activity_detail extends Component {
                                             <View className="times">{user_rank.achieve_num}次</View>
                                         </View>
                                     ):(
-                                        <View className="steps">{user_rank.step_num}</View>
+                                        <View className={user_rank.step_num < detail_data.target_step_num ? 'steps grey' : 'steps green'}>{user_rank.step_num}</View>
                                     )}
 
                                 </View>
@@ -290,7 +292,7 @@ export default class Activity_detail extends Component {
                                                 <View className="times">{item.achieve_num}次</View>
                                             </View>
                                         ):(
-                                            <View className={item.step_num < detail_data.target_step_num ? 'grey steps' : 'green steps'}>{item.step_num}</View>
+                                            <View className={item.step_num < detail_data.target_step_num ? 'steps grey' : 'steps green'}>{item.step_num}</View>
                                         )}
 
                                     </View>
@@ -350,7 +352,7 @@ export default class Activity_detail extends Component {
                                         />
                                         <View className="name">{user_rank.name}</View>
                                     </View>
-                                    <View className="steps">{user_rank.achieve_num}</View>
+                                    <View className="item"><View className="step">{user_rank.achieve_num}</View><View className="stepsUnit"> 次</View></View>
                                 </View>
                                 {rank.map((item, index) => (
                                     <View className="item" key={index}>
@@ -376,7 +378,7 @@ export default class Activity_detail extends Component {
                                             />
                                             <View className="name">{item.name}</View>
                                         </View>
-                                        <View className="steps">{item.achieve_num}</View>
+                                        <View className="item"><View className="step">{item.achieve_num}</View><View className="stepsUnit"> 次</View></View>
                                     </View>
                                 ))}
                             </View>

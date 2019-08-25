@@ -64,7 +64,6 @@ export default class Mine extends Component {
 
     onGetUserInfo = (e) => {
         let detail = e.detail.userInfo
-        console.log(detail.userInfo)
         this.props.dispatch({
             type: 'mine/save',
             payload: {
@@ -83,7 +82,6 @@ export default class Mine extends Component {
             is_certified,
             need_authorization//是否需要授权
         } = this.props
-        console.log('mine_data',mine_data,is_certified)
         return (
             <View className='mine-page'>
                 <View className="top-wrapper">
@@ -133,13 +131,14 @@ export default class Mine extends Component {
 
 
                 <View className="list">
-                    <View className="item">
-                        <View className="list-l">关于我们</View>
-                        <AtIcon value='chevron-right' size='16' color='#b3b3b3' className='chevron-right'></AtIcon>
-                    </View>
-                    <View className="item">
+                    {/*<View className="item">*/}
+                    {/*    <View className="list-l">关于我们</View>*/}
+                    {/*    <AtIcon value='chevron-right' size='16' color='#b3b3b3' className='chevron-right'></AtIcon>*/}
+                    {/*</View>*/}
+                    <View className="item" >
                         <View className="list-l">联系客服</View>
                         <AtIcon value='chevron-right' size='16' color='#b3b3b3' className='chevron-right'></AtIcon>
+                        <Button className="list-l" openType="contact">a</Button>
                     </View>
                     <View className="item">
                         <View className="list-l">如何开通</View>

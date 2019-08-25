@@ -41,7 +41,6 @@ export default {
                 const {status, data} = yield call(aaaApi.index_index_register, params)
                 Taro.hideLoading()
                 if (status == 1) {
-                    console.log('注册成功')
                     payload.cb()
                 }
             } catch (e) {
@@ -126,7 +125,6 @@ export default {
 
     reducers: {
         save(state, {payload}) {
-            console.log('common save',payload)
             return {...state, ...payload}
         }
     }

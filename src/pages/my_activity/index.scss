@@ -30,13 +30,14 @@ page{
         font-size: 34px;
         font-weight: bolder;
       }
-      .btn{
-        width: 118px;
+      .btn {
+        width: 90px;
         height: 42px;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 22px;
+        border-radius: 12px;
 
         &.wait {
           background: #dcf3fc;
@@ -56,37 +57,39 @@ page{
     }
 
     .mark{
-      font-size: 24px;
+      font-size: 26px;
       color: #9a9a9a;
     }
 
-    .activity-footer{
+    .activity-footer {
       margin-top: 30px;
       display: flex;
       justify-content: space-between;
       border-bottom: 1px solid #efefef;
       //align-items: flex-end;
-      .footer-l{
+      .footer-l {
         font-size: 24px;
         color: #303f4d;
         display: table-cell;
         vertical-align: bottom;
-        text{
+
+        text {
           font-family: $dinfont;
-          font-size: 58px;
+          font-size: 80px;
           margin-right: 12px;
           transform: translateY(4px);
         }
       }
 
-      .footer-r{
-        padding-top: 20px;
-        font-size: 22px;
+      .footer-r {
+        padding-top: 45px;
+        font-size: 24px;
         color: #b6b6b6;
         display: table-cell;
         vertical-align: bottom;
-        text{
-          font-size: 32px;
+
+        text {
+          font-size: 40px;
           font-family: $dinfont;
           margin-right: 4px;
         }

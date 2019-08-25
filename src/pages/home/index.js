@@ -42,7 +42,6 @@ export default class Home extends Component {
     }
 
     componentDidShow() {
-        // console.log(this.props.is_certified)
         if (Taro.getStorageSync('token')&&this.props.is_certified!=1){
             this.index()
         }
@@ -73,7 +72,6 @@ export default class Home extends Component {
                         }
                     })
                 } else {
-                    console.log('获取微信运动授权失败')
                     this.props.dispatch({
                         type: 'common/save',
                         payload: {
@@ -146,7 +144,6 @@ export default class Home extends Component {
     //强制授权
     openSetting = (e) => {
         let is_agree = e.detail.authSetting['scope.werun']
-        console.log(is_agree)
         if (is_agree) {
             this.circleInit()
             this.index()
@@ -165,7 +162,6 @@ export default class Home extends Component {
             canvasId: id
         })
             .then(res => {
-                console.log(res.tempFilePath)
                 this.setState({
                     [`${key}`]: res.tempFilePath
                 })
@@ -222,6 +218,7 @@ export default class Home extends Component {
             })
             return
         }
+        console.log(event_type);
         Taro.navigateTo({
             url: '/pages/activity_detail/index?id=' + id + '&event_type=' + event_type
         })
@@ -293,7 +290,6 @@ export default class Home extends Component {
         if (JSON.stringify(least_event) !== '{}') {
             percent = (least_event.user_num / least_event.target_num) * 100
         }
-        console.log('index_data', is_certified)
         return (
             <View className='home-page'>
                 <View className="wrapper">
@@ -402,7 +398,8 @@ export default class Home extends Component {
                                     </View>
                                 </View>
                             ) : (
-                                <View className="activity-con">
+                                <View className="activity-con"
+                                      onClick={this.goActivityDetail.bind(this, least_event.event_id, least_event.event_type)}>
                                     <View className="activity-top">
                                         <View className="name">{least_event.title}</View>
                                         {least_event.event_type == 1 && (
@@ -428,8 +425,7 @@ export default class Home extends Component {
                                     </View>
                                     <AtProgress percent={percent} isHidePercent strokeWidth={5} color='#2f404d'/>
 
-                                    <View className="detail-wrapper"
-                                          onClick={this.goActivityDetail.bind(this, least_event.event_id, least_event.event_type)}>
+                                    <View className="detail-wrapper">
                                         <View className="detail">
                                             查看详情
                                         </View>

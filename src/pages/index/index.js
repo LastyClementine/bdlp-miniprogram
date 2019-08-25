@@ -33,7 +33,6 @@ export default class Index extends Component {
         const {
             verify_code
         } = this.props
-        console.log(verify_code)
         if (verify_code.length !== 6) {
             Taro.showToast({title: '请填写6位口令码！', icon: 'none'})
             return
